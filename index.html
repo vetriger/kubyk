@@ -15,67 +15,58 @@
 body {
   background: #111114;
   color: #f0ede8;
-  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.5rem 1rem 3rem;
+  padding: 2rem 1.2rem 4rem;
   background-image:
-    radial-gradient(ellipse at 20% 0%,  rgba(245,200,66,0.07) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 95%, rgba(46,204,113,0.05)  0%, transparent 55%);
+    radial-gradient(ellipse at 20% 0%,  rgba(245,200,66,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 95%, rgba(46,204,113,0.04) 0%, transparent 55%);
   -webkit-text-size-adjust: 100%;
 }
 
-.top-label {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #f5c842;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-bottom: 0.4rem;
-  opacity: 0.85;
-}
-
+/* ── HEADER ── */
 h1 {
-  font-size: clamp(2.2rem, 8vw, 4.5rem);
+  font-size: clamp(2.4rem, 9vw, 4.8rem);
   font-weight: 900;
   letter-spacing: -0.02em;
   color: #f5c842;
-  text-shadow: 0 0 50px rgba(245,200,66,0.2);
-  margin-bottom: 0.15rem;
+  text-shadow: 0 0 60px rgba(245,200,66,0.18);
+  margin-bottom: 0.3rem;
   text-align: center;
 }
 
 .sub {
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   color: #f5c842;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  margin-bottom: 1.8rem;
+  margin-bottom: 0.5rem;
   text-align: center;
-  opacity: 0.8;
+  opacity: 0.65;
 }
 
 /* ── MAIN TABS ── */
 .main-tabs {
   display: flex;
-  gap: 0.4rem;
-  background: #1e1e24;
-  padding: 0.3rem;
-  border-radius: 12px;
-  border: 1px solid #2c2c36;
+  gap: 0.3rem;
+  background: #1a1a20;
+  padding: 0.25rem;
+  border-radius: 14px;
+  border: 1px solid #252530;
   margin-bottom: 2rem;
   width: 100%;
-  max-width: 420px;
+  max-width: 400px;
 }
 
 .mtab {
   flex: 1;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  padding: 0.45rem 0.5rem;
-  border-radius: 8px;
+  padding: 0.55rem 0.5rem;
+  border-radius: 10px;
   border: none;
   background: transparent;
   color: #4e4e5a;
@@ -84,33 +75,35 @@ h1 {
   outline: none;
   -webkit-tap-highlight-color: transparent;
   text-align: center;
+  transition: background 0.15s, color 0.15s;
+  letter-spacing: 0.02em;
 }
 
 .mtab.on {
   background: #f5c842;
-  color: #000;
+  color: #111114;
 }
 
 /* ── PAGES ── */
-.page { width: 100%; max-width: 420px; display: none; flex-direction: column; align-items: center; }
+.page { width: 100%; max-width: 400px; display: none; flex-direction: column; align-items: center; }
 .page.active { display: flex; }
 
-/* ── DICE SELECTOR ── */
+/* ── SELECTOR ── */
 .selector {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.25rem;
   background: #1a1a20;
-  padding: 0.3rem;
-  border-radius: 10px;
-  border: 1px solid #2c2c36;
-  margin-bottom: 2.2rem;
+  padding: 0.25rem;
+  border-radius: 12px;
+  border: 1px solid #252530;
+  margin-bottom: 2rem;
 }
 
 .sel {
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 0.4rem 1rem;
-  border-radius: 7px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  border-radius: 9px;
   border: none;
   background: transparent;
   color: #4e4e5a;
@@ -118,18 +111,20 @@ h1 {
   -webkit-appearance: none;
   outline: none;
   -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
 }
-.sel.on { background: #2ecc71; color: #000; }
+.sel.on { background: #2ecc71; color: #111114; font-weight: 700; }
 
 /* ── DICE ── */
 .dice-row {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.2rem;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.8rem;
   flex-wrap: wrap;
-  min-height: 120px;
+  min-height: 116px;
 }
 
 .die-wrap {
@@ -142,113 +137,136 @@ h1 {
 
 .die-face {
   width: 100%; height: 100%;
-  border-radius: 20px;
-  background: #1e1e24;
-  border: 1.5px solid #2c2c36;
-  box-shadow: 0 6px 28px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  border-radius: 22px;
+  background: #1c1c22;
+  border: 1.5px solid #252530;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04);
   display: grid;
   grid-template-areas: "tl . tr" "ml c mr" "bl . br";
   grid-template-columns: repeat(3,1fr);
   grid-template-rows: repeat(3,1fr);
   padding: 14px;
   position: relative;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 .die-face::after {
   content:''; position:absolute; inset:0; border-radius:inherit;
-  background:linear-gradient(140deg,rgba(255,255,255,0.06) 0%,transparent 55%);
+  background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, transparent 50%);
   pointer-events:none;
 }
-.die-face.lit { border-color:#2ecc71; box-shadow:0 0 22px rgba(46,204,113,0.28),0 6px 28px rgba(0,0,0,0.5); }
-.die-face.lit .pip { background:#2ecc71; box-shadow:0 0 7px rgba(46,204,113,0.7); }
-.die-face.rolling-tint { background:#2a2410; border-color:#f5c842; box-shadow:0 0 18px rgba(245,200,66,0.22),0 6px 28px rgba(0,0,0,0.5); }
-.die-face.rolling-tint .pip { background:#f5c842; box-shadow:0 0 7px rgba(245,200,66,0.7); }
+.die-face.lit { border-color:#2ecc71; box-shadow: 0 0 24px rgba(46,204,113,0.25), 0 8px 32px rgba(0,0,0,0.45); }
+.die-face.lit .pip { background:#2ecc71; box-shadow: 0 0 6px rgba(46,204,113,0.8); }
+.die-face.rolling-tint { background:#201e10; border-color:#f5c842; box-shadow: 0 0 20px rgba(245,200,66,0.2), 0 8px 32px rgba(0,0,0,0.45); }
+.die-face.rolling-tint .pip { background:#f5c842; box-shadow: 0 0 6px rgba(245,200,66,0.8); }
 
-.pip { place-self:center; width:13px; height:13px; border-radius:50%; background:#f5c842; box-shadow:0 0 7px rgba(245,200,66,0.6); }
+.pip { place-self:center; width:12px; height:12px; border-radius:50%; background:#f5c842; }
 .pip.h { opacity:0; }
 .p-tl{grid-area:tl} .p-tr{grid-area:tr} .p-ml{grid-area:ml}
 .p-c{grid-area:c} .p-mr{grid-area:mr} .p-bl{grid-area:bl} .p-br{grid-area:br}
 
-/* ── BUTTONS ── */
+/* ── MAIN BUTTON ── */
 .btn-main {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 0.85rem 3rem;
+  padding: 0.9rem 3.5rem;
   background: #f5c842;
-  color: #000;
+  color: #111114;
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(245,200,66,0.28);
-  margin-bottom: 2rem;
+  box-shadow: 0 4px 24px rgba(245,200,66,0.25);
+  margin-bottom: 1.8rem;
   -webkit-appearance: none;
   outline: none;
   -webkit-tap-highlight-color: transparent;
-  transition: background 0.05s, box-shadow 0.05s, color 0.05s;
+  transition: background 0.05s, box-shadow 0.05s;
 }
-
 .btn-main:active {
   background: #2ecc71;
-  color: #000;
-  box-shadow: 0 2px 22px rgba(46,204,113,0.55);
+  box-shadow: 0 2px 20px rgba(46,204,113,0.5);
   transition: background 0s, box-shadow 0s;
 }
 
 /* ── RESULT ── */
-.result { text-align:center; min-height:68px; margin-bottom:1.8rem; }
+.result { text-align:center; min-height:72px; margin-bottom:1.6rem; }
 
 .res-num {
-  font-size: 3.6rem; font-weight:900; line-height:1;
-  color: #2ecc71; letter-spacing:-0.02em;
-  text-shadow: 0 0 36px rgba(46,204,113,0.38);
-  opacity: 0.15;
+  font-size: 3.8rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #2ecc71;
+  letter-spacing: -0.02em;
+  opacity: 0.12;
+  transition: opacity 0.2s;
 }
-.res-num.show { opacity:1; }
-.res-label { font-size:0.66rem; color:#4e4e5a; letter-spacing:0.2em; text-transform:uppercase; margin-top:0.3rem; transition: color 0.3s; }
-.res-label.show { color:#2ecc71; }
+.res-num.show { opacity: 1; }
+.res-label {
+  font-size: 0.6rem;
+  color: #3e3e4a;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+  transition: color 0.3s;
+  min-height: 1em;
+}
+.res-label.show { color: #6e6e7a; }
 
 /* ── HISTORY ── */
-.hist-wrap { width:100%; }
+.hist-wrap { width:100%; margin-bottom: 0.5rem; }
 .hist-head {
-  font-size:0.62rem; color:#4e4e5a;
-  letter-spacing:0.2em; text-transform:uppercase;
-  margin-bottom:0.6rem;
-  display:flex; align-items:center; gap:0.5rem;
+  font-size: 0.6rem;
+  color: #3e3e4a;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
-.hist-head::after { content:''; flex:1; height:1px; background:#2c2c36; }
-.hist-actions { display:flex; justify-content:flex-end; margin-bottom:0.5rem; }
+.hist-head::after { content:''; flex:1; height:1px; background:#1e1e28; }
 .btn-clear {
-  font-size:0.65rem; color:#4e4e5a; background:transparent;
-  border:1px solid #2c2c36; border-radius:20px; padding:0.2rem 0.7rem;
-  cursor:pointer; -webkit-tap-highlight-color:transparent;
+  font-size: 0.6rem;
+  color: #3e3e4a;
+  background: transparent;
+  border: 1px solid #252530;
+  border-radius: 20px;
+  padding: 0.2rem 0.65rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.15s, border-color 0.15s;
 }
+.btn-clear:active { color: #f0ede8; border-color: #4e4e5a; }
 
 .chips { display:flex; flex-wrap:wrap; gap:0.3rem; }
 .chip {
-  font-family:'Courier New', monospace; font-size:0.72rem;
-  padding:0.2rem 0.6rem; background:#1e1e24;
-  border:1px solid #2c2c36; border-radius:50px; color:#4e4e5a;
+  font-size: 0.72rem;
+  padding: 0.2rem 0.65rem;
+  background: #1a1a20;
+  border: 1px solid #252530;
+  border-radius: 50px;
+  color: #4e4e5a;
 }
-.chip.new { border-color:#f5c842; color:#f5c842; background:rgba(245,200,66,0.07); }
-.empty { font-size:0.72rem; color:#4e4e5a; font-style:italic; }
+.chip.new { border-color: #f5c842; color: #f5c842; background: rgba(245,200,66,0.06); }
+.empty { font-size: 0.7rem; color: #3e3e4a; font-style: italic; }
 
-/* ── RNG PAGE ── */
+/* ── RNG CARD ── */
 .rng-card {
-  background: #1e1e24;
-  border: 1px solid #2c2c36;
-  border-radius: 16px;
-  padding: 1.4rem;
+  background: #161618;
+  border: 1px solid #222228;
+  border-radius: 18px;
+  padding: 1.4rem 1.4rem 1rem;
   width: 100%;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
 }
 
 .rng-label {
-  font-size: 0.65rem;
-  color: #4e4e5a;
-  letter-spacing: 0.18em;
+  font-size: 0.6rem;
+  color: #3e3e4a;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin-bottom: 0.6rem;
+  margin-bottom: 1rem;
 }
 
 .rng-row {
@@ -257,14 +275,13 @@ h1 {
   gap: 0.8rem;
   margin-bottom: 1rem;
 }
-
 .rng-row:last-child { margin-bottom: 0; }
 
 .rng-input {
   flex: 1;
   background: #111114;
-  border: 1px solid #2c2c36;
-  border-radius: 8px;
+  border: 1px solid #252530;
+  border-radius: 10px;
   color: #f0ede8;
   font-size: 1rem;
   font-weight: 700;
@@ -272,54 +289,51 @@ h1 {
   outline: none;
   -webkit-appearance: none;
   text-align: center;
-  width: 80px;
+  width: 72px;
 }
+.rng-input:focus { border-color: #3e3e5a; }
 
 .rng-input-label {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: #6e6e7a;
   flex: 1;
 }
 
-/* Toggle switch */
+/* ── TOGGLE ── */
 .toggle-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
-
-.toggle-label { font-size: 0.82rem; color: #9e9ea8; }
-
-.toggle {
-  position: relative;
-  width: 44px; height: 24px;
-}
+.toggle-label { font-size: 0.82rem; color: #8e8e98; }
+.toggle { position:relative; width:44px; height:26px; }
 .toggle input { opacity:0; width:0; height:0; }
 .toggle-slider {
-  position: absolute; inset:0;
-  background: #2c2c36;
-  border-radius: 24px;
-  cursor: pointer;
+  position:absolute; inset:0;
+  background:#222228;
+  border-radius:26px;
+  cursor:pointer;
   transition: background 0.2s;
 }
 .toggle-slider::before {
   content:'';
   position:absolute;
-  width:18px; height:18px;
+  width:20px; height:20px;
   left:3px; top:3px;
   background:#f0ede8;
   border-radius:50%;
   transition: transform 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 .toggle input:checked + .toggle-slider { background:#2ecc71; }
-.toggle input:checked + .toggle-slider::before { transform: translateX(20px); }
+.toggle input:checked + .toggle-slider::before { transform: translateX(18px); }
 
-/* RNG big number */
+/* ── RNG RESULT ── */
 .rng-result {
   text-align: center;
-  margin-bottom: 1.8rem;
-  min-height: 80px;
+  margin-bottom: 1.6rem;
+  min-height: 84px;
 }
 
 .rng-num {
@@ -327,52 +341,258 @@ h1 {
   font-weight: 900;
   line-height: 1;
   color: #2ecc71;
-  text-shadow: 0 0 40px rgba(46,204,113,0.4);
-  opacity: 0.15;
+  opacity: 0.12;
   letter-spacing: -0.03em;
-  transition: color 0.15s, text-shadow 0.15s, opacity 0.2s;
+  transition: color 0.12s, opacity 0.18s;
+  word-break: break-word;
+  text-align: center;
 }
-.rng-num.show { opacity: 1; }
-.rng-num.spinning {
-  color: #f5c842;
-  text-shadow: 0 0 40px rgba(245,200,66,0.4);
-  opacity: 1;
-}
-.rng-num.result {
-  color: #2ecc71;
-  text-shadow: 0 0 40px rgba(46,204,113,0.4);
-  opacity: 1;
-}
+.rng-num.show    { opacity: 1; }
+.rng-num.spinning { color: #f5c842; opacity: 1; }
+.rng-num.result   { color: #2ecc71; opacity: 1; }
 
 .rng-sublabel {
-  font-size: 0.65rem;
-  color: #4e4e5a;
-  letter-spacing: 0.18em;
+  font-size: 0.62rem;
+  color: #3e3e4a;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin-top: 0.4rem;
+  margin-top: 0.5rem;
 }
 
 .rng-pool-info {
-  font-size: 0.7rem;
-  color: #4e4e5a;
+  font-size: 0.68rem;
+  color: #3e3e4a;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
   min-height: 1rem;
 }
-
 .rng-pool-info span { color: #f5c842; }
 
 /* ── SHARE NOTE ── */
 .share-note {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   font-size: 0.62rem;
-  color: #f5c842;
-  opacity: 0.7;
-  letter-spacing: 0.08em;
+  color: #4e4e5a;
+  letter-spacing: 0.06em;
   text-align: center;
   line-height: 2;
   width: 100%;
   max-width: 340px;
+}
+.share-note a, .share-note summary {
+  color: #f5c842;
+  opacity: 0.8;
+}
+
+/* ── TASKS ── */
+.task-card {
+  background: #161618;
+  border: 1px solid #222228;
+  border-radius: 20px;
+  padding: 2rem 1.6rem 1.6rem;
+  text-align: center;
+  width: 100%;
+}
+.task-emoji {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+.task-text {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #f0ede8;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.4rem;
+}
+.task-timer-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+.task-timer {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #2ecc71;
+  line-height: 1;
+  transition: color 0.3s;
+}
+.task-timer.urgent { color: #f5c842; }
+.task-timer.done   { color: #3e3e4a; }
+.task-timer-label {
+  font-size: 0.6rem;
+  color: #3e3e4a;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.task-timer-bar-bg {
+  width: 100%;
+  height: 3px;
+  background: #222228;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.task-timer-bar {
+  height: 100%;
+  background: #2ecc71;
+  border-radius: 3px;
+  width: 100%;
+  transition: width 1s linear, background 0.3s;
+}
+.task-timer-bar.urgent { background: #f5c842; }
+
+/* ── GAME OF DAY ── */
+.game-card {
+  width: 100%;
+  background: #161618;
+  border: 1px solid #222228;
+  border-radius: 20px;
+  padding: 1.8rem 1.6rem 1.6rem;
+  margin-bottom: 1.6rem;
+  position: relative;
+}
+.game-badge {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #f5c842;
+  opacity: 0.7;
+  margin-bottom: 0.8rem;
+}
+.game-title {
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: #f0ede8;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.game-desc {
+  font-size: 0.88rem;
+  color: #8e8e98;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.game-players {
+  font-size: 0.62rem;
+  color: #3e3e4a;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.game-promo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+.game-promo-text {
+  font-size: 0.68rem;
+  color: #4e4e5a;
+  letter-spacing: 0.08em;
+}
+.game-promo-btn {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #f5c842;
+  text-decoration: none;
+  border: 1px solid rgba(245,200,66,0.35);
+  border-radius: 50px;
+  padding: 0.5rem 1.4rem;
+  background: rgba(245,200,66,0.07);
+  letter-spacing: 0.04em;
+}
+.game-card {
+  width: 100%;
+  background: #161618;
+  border: 1px solid #222228;
+  border-radius: 20px;
+  padding: 1.8rem 1.6rem 1.6rem;
+  margin-bottom: 1.6rem;
+  position: relative;
+}
+
+.game-badge {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #f5c842;
+  opacity: 0.7;
+  margin-bottom: 0.8rem;
+}
+
+.game-title {
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: #f0ede8;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.game-desc {
+  font-size: 0.88rem;
+  color: #8e8e98;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.game-players {
+  font-size: 0.62rem;
+  color: #4e4e5a;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.game-promo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.game-promo-text {
+  font-size: 0.68rem;
+  color: #4e4e5a;
+  letter-spacing: 0.08em;
+}
+
+.game-tomorrow {
+  text-align: center;
+  padding: 1.2rem 1rem;
+  background: #161618;
+  border: 1px solid #222228;
+  border-radius: 16px;
+  margin-bottom: 1.4rem;
+  width: 100%;
+}
+.game-tomorrow-text {
+  font-size: 0.82rem;
+  color: #f0ede8;
+  margin-bottom: 0.8rem;
+}
+.game-tomorrow-or {
+  display: none;
+}
+
+.game-promo-btn {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #f5c842;
+  text-decoration: none;
+  border: 1px solid rgba(245,200,66,0.35);
+  border-radius: 50px;
+  padding: 0.5rem 1.4rem;
+  background: rgba(245,200,66,0.07);
+  letter-spacing: 0.04em;
 }
 </style>
 </head>
@@ -381,12 +601,20 @@ h1 {
 <h1>ТАТУСІГРИ</h1>
 <p class="sub">Кубик та генератор для ігор з дітьми</p>
 
+<div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;margin-bottom:1.4rem;font-size:0.68rem;letter-spacing:0.06em;">
+  <span style="color:#6e6e7a;">Створив для батьків, що грають з дітьми</span>
+  <a href="https://www.instagram.com/vitalii.golounin/" target="_blank" style="display:inline-flex;align-items:center;gap:0.35rem;color:#f0ede8;text-decoration:none;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:50px;padding:0.25rem 0.75rem;font-weight:600;">Віталій Голоунін
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+  </a>
+</div>
+
 <!-- Language switcher -->
 
 <!-- MAIN TABS -->
 <div class="main-tabs">
   <button class="mtab on" onclick="switchTab('dice')">🎲 Кубик</button>
   <button class="mtab"    onclick="switchTab('rng')" >✨ Генератор</button>
+  <button class="mtab"    onclick="switchTab('game')">🎯 Гра дня</button>
 </div>
 
 <!-- ═══ DICE PAGE ═══ -->
@@ -403,8 +631,8 @@ h1 {
   <button class="btn-main" id="rollBtn" onclick="rollAll()">🎲 Кинути</button>
 
   <div class="result">
+    <div class="res-label" id="resLabel"></div>
     <div class="res-num" id="resNum">—</div>
-    <div class="res-label" id="resLabel">натисни «кинути»</div>
   </div>
 
   <div class="hist-wrap">
@@ -424,6 +652,7 @@ h1 {
     <button class="sel on" data-mode="nums"    onclick="setRngMode('nums')"     >🔢 Числа</button>
     <button class="sel"    data-mode="words"   onclick="setRngMode('words')"    >🔤 Слова</button>
     <button class="sel"    data-mode="letters" onclick="setRngMode('letters')" >🔡 Літери</button>
+    <button class="sel"    data-mode="tasks"   onclick="setRngMode('tasks')"   >🎪 Завдання</button>
   </div>
 
   <!-- NUMBERS panel -->
@@ -494,7 +723,30 @@ h1 {
     <div class="rng-pool-info" id="lettersPoolInfo"></div>
   </div>
 
-  <div class="rng-result">
+  <!-- TASKS panel -->
+  <div id="rng-tasks-panel" style="display:none;width:100%;">
+    <div class="rng-card">
+      <div class="rng-label">Для кого завдання?</div>
+      <div class="selector" style="margin-bottom:0;border:none;background:transparent;padding:0;">
+        <button class="sel on" id="task-for-1" onclick="setTaskFor(1)">👤 Для одного</button>
+        <button class="sel"    id="task-for-2" onclick="setTaskFor(2)">👥 Для двох</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="task-result" style="display:none;width:100%;margin-bottom:1.6rem;">
+    <div class="task-card">
+      <div class="task-emoji" id="taskEmoji"></div>
+      <div class="task-text" id="taskText"></div>
+      <div class="task-timer-wrap" id="taskTimerWrap">
+        <div class="task-timer" id="taskTimer">10</div>
+        <div class="task-timer-label">секунд</div>
+        <div class="task-timer-bar-bg"><div class="task-timer-bar" id="taskTimerBar"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rng-result" id="rng-result-default">
     <div class="rng-num" id="rngNum" style="font-size:2.8rem;word-break:break-word;text-align:center;">—</div>
     <div class="rng-sublabel" id="rngSublabel">натисни «генерувати»</div>
   </div>
@@ -511,36 +763,53 @@ h1 {
 
 </div>
 
-<div class="share-note">
-  <div>Для швидкого доступу збережіть посилання в нотатках чи на початковий екран.</div>
-  <div>Працює офлайн.</div>
-</div>
+<!-- ═══ GAME OF DAY PAGE ═══ -->
+<div class="page" id="page-game">
 
-<details style="width:100%;max-width:280px;margin-top:0.8rem;cursor:pointer;">
-  <summary style="font-size:0.62rem;color:#f5c842;opacity:0.7;letter-spacing:0.1em;text-align:center;list-style:none;outline:none;">
-    📲 Інструкція з встановлення
-  </summary>
-  <div style="margin-top:0.8rem;background:#1e1e24;border:1px solid #2c2c36;border-radius:12px;padding:1rem;font-size:0.7rem;line-height:1.9;color:#9e9ea8;">
-    <div style="margin-bottom:0.6rem;color:#f5c842;font-weight:700;letter-spacing:0.1em;">🍎 iPhone / iPad</div>
-    <div>1. Відкрий посилання в <b style="color:#f0ede8;">Safari</b></div>
-    <div>2. Натисни кнопку <b style="color:#f0ede8;">«Поділитись»</b> внизу екрану</div>
-    <div>3. Обери <b style="color:#f0ede8;">«На початковий екран»</b></div>
-    <div>4. Натисни <b style="color:#f0ede8;">«Додати»</b></div>
-    <div style="margin-top:0.8rem;margin-bottom:0.6rem;color:#f5c842;font-weight:700;letter-spacing:0.1em;">🤖 Android</div>
-    <div>1. Відкрий посилання в <b style="color:#f0ede8;">Chrome</b></div>
-    <div>2. Натисни <b style="color:#f0ede8;">⋮</b> (три крапки) вгорі</div>
-    <div>3. Обери <b style="color:#f0ede8;">«Додати на головний екран»</b></div>
-    <div>4. Натисни <b style="color:#f0ede8;">«Додати»</b></div>
+  <div class="game-card" id="gameCard">
+    <div class="game-badge">Гра дня</div>
+    <div class="game-title" id="gameTitle">—</div>
+    <div class="game-desc" id="gameDesc"></div>
+    <div class="game-players" id="gamePlayers"></div>
   </div>
-</details>
 
-<div style="margin-top:1rem;font-size:0.58rem;color:#6e6e7a;letter-spacing:0.12em;text-align:center;">
-  Створив Віталій Голоунін для батьків, що грають з дітьми
-</div>
+  <button class="btn-main" onclick="nextGame()">🎯 Інша гра</button>
 
-<div style="margin-top:1rem;display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;">
-  <a href="https://tatusigry.wayforpay.link/" target="_blank" style="font-size:0.72rem;font-weight:600;color:#f5c842;letter-spacing:0.08em;text-decoration:none;border:1px solid rgba(245,200,66,0.35);border-radius:50px;padding:0.4rem 1rem;background:rgba(245,200,66,0.07);">🎲 Детальніше про ігри</a>
-  <a href="https://www.instagram.com/vitalii.golounin/" target="_blank" style="font-size:0.72rem;font-weight:600;color:#f5c842;letter-spacing:0.08em;text-decoration:none;border:1px solid rgba(245,200,66,0.35);border-radius:50px;padding:0.4rem 1rem;background:rgba(245,200,66,0.07);">🧔 Детальніше про автора</a>
+  <div class="game-tomorrow" id="gameTomorrow" style="display:none;">
+    <div class="game-tomorrow-text">Приходь завтра за новою грою або</div>
+    <div class="game-tomorrow-or"></div>
+    <a href="https://tatusigry.wayforpay.link/" target="_blank" style="display:inline-block;font-size:0.95rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;padding:0.9rem 2rem;background:#f5c842;color:#111114;border:none;border-radius:50px;text-decoration:none;box-shadow:0 4px 24px rgba(245,200,66,0.25);">🎲 Отримай збірку «101 гра з дітьми» зараз</a>
+  </div>
+
+  <div class="game-promo" id="gamePromo">
+    <div class="game-promo-text">Ще 100 ігор у збірці</div>
+    <a href="https://tatusigry.wayforpay.link/" target="_blank" class="game-promo-btn">«101 гра з дітьми»</a>
+  </div>
+
+  <div class="share-note">
+    <div>Для швидкого доступу збережіть посилання в нотатках чи на початковий екран. Працює офлайн.</div>
+    <details style="display:inline;cursor:pointer;">
+      <summary style="display:inline;list-style:none;outline:none;color:#f5c842;opacity:0.9;text-decoration:underline;text-underline-offset:3px;">📲 Інструкція з встановлення</summary>
+      <div style="margin-top:0.8rem;background:#1a1a20;border:1px solid #222228;border-radius:12px;padding:1rem;font-size:0.7rem;line-height:1.9;color:#9e9ea8;text-align:left;">
+        <div style="margin-bottom:0.6rem;color:#f5c842;font-weight:700;letter-spacing:0.1em;">🍎 iPhone / iPad</div>
+        <div>1. Відкрий посилання в <b style="color:#f0ede8;">Safari</b></div>
+        <div>2. Натисни кнопку <b style="color:#f0ede8;">«Поділитись»</b> внизу екрану</div>
+        <div>3. Обери <b style="color:#f0ede8;">«На початковий екран»</b></div>
+        <div>4. Натисни <b style="color:#f0ede8;">«Додати»</b></div>
+        <div style="margin-top:0.8rem;margin-bottom:0.6rem;color:#f5c842;font-weight:700;letter-spacing:0.1em;">🤖 Android</div>
+        <div>1. Відкрий посилання в <b style="color:#f0ede8;">Chrome</b></div>
+        <div>2. Натисни <b style="color:#f0ede8;">⋮</b> (три крапки) вгорі</div>
+        <div>3. Обери <b style="color:#f0ede8;">«Додати на головний екран»</b></div>
+        <div>4. Натисни <b style="color:#f0ede8;">«Додати»</b></div>
+      </div>
+    </details>
+  </div>
+
+  <div style="margin-top:1rem;display:flex;flex-direction:column;align-items:center;gap:0.7rem;">
+    <p style="font-size:0.7rem;color:#6e6e7a;letter-spacing:0.08em;text-align:center;">Хочеш більше ідей для гри з дитиною?</p>
+    <a href="https://tatusigry.wayforpay.link/" target="_blank" style="font-size:0.72rem;font-weight:600;color:#f5c842;letter-spacing:0.08em;text-decoration:none;border:1px solid rgba(245,200,66,0.35);border-radius:50px;padding:0.4rem 1.2rem;background:rgba(245,200,66,0.07);">🎲 101 гра з дітьми</a>
+  </div>
+
 </div>
 
 <script>
@@ -549,8 +818,241 @@ function switchTab(tab) {
   document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
   document.querySelectorAll('.mtab').forEach(function(b){ b.classList.remove('on'); });
   document.getElementById('page-'+tab).classList.add('active');
+  var tabs = ['dice','rng','game'];
   var btns = document.querySelectorAll('.mtab');
-  btns[tab==='dice'?0:1].classList.add('on');
+  btns[tabs.indexOf(tab)].classList.add('on');
+  if(tab === 'game') { gameClicked = false; showDailyGame(); document.getElementById('gameTomorrow').style.display='none'; document.getElementById('gamePromo').style.display='flex'; document.querySelector('#page-game .btn-main').style.display=''; }
+}
+
+// ── TASKS ─────────────────────────────────────────────────
+var taskFor = 1;
+var taskTimer = null;
+var tasksUsed = [];
+
+var TASKS_1 = [
+  {e:'🐸', t:'Стрибай як жабка 5 разів', s:10},
+  {e:'🐶', t:'Гавкай як пес 3 рази', s:8},
+  {e:'🐱', t:'Нявкай як кіт якомога жалібніше', s:8},
+  {e:'🐘', t:'Походи як слон — повільно і важко', s:10},
+  {e:'🦁', t:'Зарви як лев', s:5},
+  {e:'🐧', t:'Походи як пінгвін з рівною спиною', s:10},
+  {e:'🦊', t:'Покрутись навколо себе 3 рази', s:8},
+  {e:'🐍', t:'Проповзи по підлозі як змія', s:10},
+  {e:'🦋', t:'Помахай руками як крилами метелика', s:8},
+  {e:'🐻', t:'Пореви як ведмідь і вдар себе в груди', s:5},
+  {e:'👂', t:'Візьми себе за праве вухо', s:5},
+  {e:'👃', t:'Торкнись носа лівою рукою', s:5},
+  {e:'🦶', t:'Постій на одній нозі', s:10},
+  {e:'🙃', t:'Зроби кумедну гримасу і не смійся', s:8},
+  {e:'💃', t:'Потанцюй як ніхто не дивиться', s:10},
+  {e:'🤸', t:'Зроби 3 присідання', s:10},
+  {e:'🦀', t:'Походи боком як краб', s:10},
+  {e:'🐌', t:'Рухайся якомога повільніше 10 секунд', s:10},
+  {e:'🙊', t:'Говори пошепки наступні 30 секунд', s:5},
+  {e:'🤖', t:'Рухайся і говори як робот', s:10},
+  {e:'🌀', t:'Покружляй на місці 5 разів', s:8},
+  {e:'🐊', t:'Лягай на підлогу і повзи як крокодил', s:10},
+  {e:'🦒', t:'Тягнись вгору — ти жираф!', s:8},
+  {e:'🐒', t:'Почухай голову і пахви як мавпа', s:8},
+  {e:'🌬️', t:'Видуй щоки і не випускай повітря', s:8},
+  {e:'👣', t:'Пройди по кімнаті навшпиньках', s:10},
+  {e:'🤪', t:'Зроби найбезумнішу гримасу', s:5},
+  {e:'🦕', t:'Ти динозавр — тупотіти і ревти!', s:8},
+  {e:'🎵', t:'Насвисти будь-яку мелодію', s:10},
+  {e:'🥊', t:'Постій у позі супергероя', s:8},
+];
+
+var TASKS_2 = [
+  {e:'🪞', t:'Один робить гримасу — інший копіює', s:10},
+  {e:'🤝', t:'Поплескайте одне одного по спині', s:5},
+  {e:'🤜', t:'Зробіть кулак-кулак-камінь-ножиці разом', s:8},
+  {e:'🐛', t:'Станьте гусеницею — один тримається за плечі іншого і разом рухайтесь', s:12},
+  {e:'🎭', t:'Один гавкає — інший мявкає. Хто голосніше?', s:8},
+  {e:'🎪', t:'Один робить рух — інший повторює', s:10},
+  {e:'🤸', t:'Присідніть разом одночасно 3 рази', s:10},
+  {e:'👐', t:'Пограйте в долоні — хлоп-хлоп-хлоп', s:8},
+  {e:'🦁', t:'Разом заревіть якомога голосніше', s:5},
+  {e:'🐘', t:'Ідіть по кімнаті як два слони разом', s:10},
+  {e:'🎵', t:'Разом насвистіть одну мелодію', s:10},
+  {e:'🤡', t:'Один говорить слово — інший відповідає протилежним', s:10},
+  {e:'🪩', t:'Потанцюйте разом 10 секунд', s:10},
+  {e:'👁️', t:'Дивіться одне одному в очі і не смійтесь', s:10},
+  {e:'🤲', t:'Торкніться долонями і не розривайте 8 секунд', s:8},
+  {e:'🦊', t:'Покрутіться разом навколо одне одного', s:8},
+  {e:'🐧', t:'Походіть як пінгвіни — плече до плеча', s:10},
+  {e:'🎤', t:'Разом скажіть одне слово одночасно — хто злагодженіше', s:8},
+  {e:'🤔', t:'Одночасно покажіть пальцем на стелю', s:5},
+  {e:'🌀', t:'Покружляйте разом тримаючись за руки', s:8},
+  {e:'😂', t:'Дивіться одне на одного і не смійтесь 10 секунд', s:10},
+  {e:'🐒', t:'Разом почухайте голову як мавпи', s:5},
+  {e:'🦶', t:'Обидва встаньте на одну ногу', s:10},
+  {e:'🎯', t:'Обидва покажіть на один і той самий предмет у кімнаті', s:5},
+  {e:'🤫', t:'Обидва мовчіть і спілкуйтесь тільки жестами', s:12},
+  {e:'🏆', t:'Обидва вдайте що отримали нагороду — поклоніться!', s:8},
+  {e:'🐸', t:'Разом стрибайте як жабки 3 рази', s:8},
+  {e:'🌬️', t:'Разом видуйте щоки і дивіться одне на одного', s:8},
+  {e:'🤖', t:'Обидва рухаєтесь як роботи до рахунку 10', s:10},
+  {e:'🦕', t:'Разом ревіть як динозаври — хто страшніше!', s:8},
+];
+
+function setTaskFor(n) {
+  taskFor = n;
+  document.getElementById('task-for-1').className = 'sel' + (n===1?' on':'');
+  document.getElementById('task-for-2').className = 'sel' + (n===2?' on':'');
+}
+
+function generateTask() {
+  var list = taskFor === 1 ? TASKS_1 : TASKS_2;
+  if(tasksUsed.length >= list.length) tasksUsed = [];
+  var available = list.filter(function(_,i){ return tasksUsed.indexOf(i)===-1; });
+  var pick = available[Math.floor(Math.random()*available.length)];
+  var idx = list.indexOf(pick);
+  tasksUsed.push(idx);
+
+  document.getElementById('taskEmoji').textContent = pick.e;
+  document.getElementById('taskText').textContent = pick.t;
+  document.getElementById('task-result').style.display = 'block';
+  document.getElementById('rng-result-default').style.display = 'none';
+
+  startTaskTimer(pick.s);
+  playClick();
+}
+
+function startTaskTimer(seconds) {
+  if(taskTimer) clearInterval(taskTimer);
+  var el = document.getElementById('taskTimer');
+  var bar = document.getElementById('taskTimerBar');
+  var wrap = document.getElementById('taskTimerWrap');
+  var total = seconds;
+  var left = seconds;
+
+  el.textContent = left;
+  el.className = 'task-timer';
+  bar.className = 'task-timer-bar';
+  bar.style.width = '100%';
+  bar.style.transition = 'none';
+
+  setTimeout(function(){
+    bar.style.transition = 'width 1s linear, background 0.3s';
+    bar.style.width = '0%';
+  }, 50);
+
+  taskTimer = setInterval(function(){
+    left--;
+    el.textContent = left;
+    var pct = (left / total * 100) + '%';
+    if(left <= 3) {
+      el.className = 'task-timer urgent';
+      bar.className = 'task-timer-bar urgent';
+    }
+    if(left <= 0) {
+      clearInterval(taskTimer);
+      el.textContent = '✓';
+      el.className = 'task-timer done';
+      bar.style.width = '0%';
+    }
+  }, 1000);
+}
+var GAMES = [
+  {
+    title: 'Няв-караоке',
+    desc: 'Потрібно проспівати будь-яку пісню, замінюючи всі слова на котяче «няв». Інші намагаються відгадати цю пісню. Хто перший відгадав — співає наступним.',
+    players: '2+ гравці · від 4 років'
+  },
+  {
+    title: 'З мене — обличчя, з тебе — звук',
+    desc: 'Один гравець робить кумедний вираз обличчя, кривляючись без звуку. Інший придумує до нього звук і просить повторити цей вираз, додаючи свій кумедний звук. Далі гравці змінюють ролі.',
+    players: '2 гравці · від 3 років'
+  },
+  {
+    title: 'Робот 2000',
+    desc: 'Дорослий виконує роль робота, який призначений допомагати дитині виконувати буденні справи. Робот дивно і повільно спілкується, може ламатись і влаштовувати кумедні збої. Дитина має дбати, лагодити й давати завдання роботу.',
+    players: '2 гравці · від 3 років'
+  },
+  {
+    title: 'Черепахи навипередки',
+    desc: 'Змагання на швидкість навпаки. Завдання — хто повільніше дійде до визначеного фінішу. Гравцям можна і потрібно максимально сповільнитись, але не можна зупинятись. Хто останній — той переміг.',
+    players: '2+ гравці · від 3 років'
+  },
+  {
+    title: 'Уявні хованки',
+    desc: 'Хтось один загадує місце хованки у вашій квартирі. Якщо треба — може дати одну підказку про це місце. Інші гравці намагаються вгадати, називаючи місця, які в уяві йдуть перевіряти. Треба знайти за найменшу кількість спроб.',
+    players: '2+ гравці · від 5 років'
+  },
+  {
+    title: 'Мікс тварин',
+    desc: 'Ведучий називає дві тварини, гравці мають рухатися як перша та видавати звук другої. Наприклад: жаба і корова — стрибай як жаба і мукай. Спробуйте: ведмідь і кіт, кенгуру і пес, лев і комар.',
+    players: '2+ гравці · від 3 років'
+  },
+  {
+    title: 'Е-е-е',
+    desc: 'Гравець має говорити на визначену тему 1 хвилину, не використовуючи паузи «е-е-е». Якщо хтось каже «е-е-е» — він вибуває. Виграє той, хто без заминок і пауз розповість свою історію.',
+    players: '2+ гравці · від 6 років'
+  },
+  {
+    title: 'Крокодил',
+    desc: 'Гравцю загадується слово, яке за допомогою жестів і міміки він намагається показати іншим — без звуків. Інші гравці намагаються відгадати це слово. Варто починати з простих слів.',
+    players: '3+ гравці · від 4 років'
+  },
+  {
+    title: 'Хто я?',
+    desc: 'Гравцю загадують персонажа — героя з мультика чи казки. Гравець має відгадати, хто він, ставлячи запитання іншим. Відповідати можна тільки «Так» чи «Ні». Наприклад: Я зелений? Так! Я Шрек? Так!',
+    players: '2+ гравці · від 4 років'
+  },
+  {
+    title: 'Що краще?',
+    desc: 'Учасники по черзі пропонують один одному обрати що краще. Наприклад: «Пахнути як риба чи виглядати як риба?» або «Загубити штани чи розбити улюблену мамину вазу?». Учасник має обрати щось одне і пояснити свій вибір.',
+    players: '2+ гравці · від 5 років'
+  },
+  {
+    title: 'Дзеркало',
+    desc: 'Один учасник показує будь-які рухи. Завдання другого — повторити все за першим як дзеркало. Потім зміна ролей. Виграє той, хто показав те, що не змогли повторити.',
+    players: '2 гравці · від 3 років'
+  },
+  {
+    title: 'Заборонене слово',
+    desc: 'Обирається поширене слово, яке заборонено вживати протягом гри — наприклад «так» або «ні». Гравці ставлять один одному запитання, намагаючись змусити опонента використати заборонене слово.',
+    players: '2+ гравці · від 5 років'
+  }
+];
+
+var gameIndex = -1;
+
+function getDailyIndex() {
+  var day = Math.floor(Date.now() / 86400000);
+  return day % GAMES.length;
+}
+
+function showDailyGame() {
+  if(gameIndex === -1) gameIndex = getDailyIndex();
+  renderGame(gameIndex);
+}
+
+var gameClicked = false;
+
+function nextGame() {
+  playClick();
+  if(gameClicked) return;
+  gameClicked = true;
+  // Show tomorrow message, hide promo and button
+  document.getElementById('gameTomorrow').style.display = 'block';
+  document.getElementById('gamePromo').style.display = 'none';
+  document.querySelector('#page-game .btn-main').style.display = 'none';
+}
+
+function renderGame(idx) {
+  var g = GAMES[idx];
+  document.getElementById('gameTitle').textContent = g.title;
+  document.getElementById('gameDesc').textContent = g.desc;
+  document.getElementById('gamePlayers').textContent = g.players;
+  var card = document.getElementById('gameCard');
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(8px)';
+  card.style.transition = 'opacity 0.25s, transform 0.25s';
+  setTimeout(function(){
+    card.style.opacity = '1';
+    card.style.transform = 'translateY(0)';
+  }, 30);
 }
 
 // ── DICE ─────────────────────────────────────────────────
@@ -589,7 +1091,8 @@ function buildDice() {
   }
   document.getElementById('resNum').className='res-num';
   document.getElementById('resNum').textContent='—';
-  document.getElementById('resLabel').textContent='натисни «кинути»';
+  var rl=document.getElementById('resLabel');
+  if(rl){ rl.textContent=''; rl.className='res-label'; }
 }
 
 function setN(n) {
@@ -631,8 +1134,7 @@ async function rollAll() {
   el.className='res-num show';
   el.textContent=N>1?finals.join(' + ')+' = '+sum:''+sum;
   var rl=document.getElementById('resLabel');
-  rl.textContent=N===1?'випало '+sum:'сума = '+sum;
-  rl.className='res-label show';
+  if(rl){ rl.textContent='Випало'; rl.className='res-label show'; }
   addDiceHist(finals,sum);
   rolling = false;
   setTimeout(function(){
@@ -799,8 +1301,7 @@ function updateLettersPoolInfo() {
   if(!noRep){ el.innerHTML=''; return; }
   var remaining = alpha.length - lettersUsed.length;
   if(remaining<=0){
-    el.innerHTML = lang==='uk' ? 'Всі літери використані. <span>Починаємо знову!</span>'
-                               : 'All letters used. <span>Starting over!</span>';
+    el.innerHTML = 'Всі літери використані. <span>Починаємо знову!</span>';
   } else {
     el.innerHTML='Залишилось: <span>'+remaining+'</span> з <span>'+alpha.length+'</span>';
   }
@@ -836,8 +1337,7 @@ async function generateLetters() {
   el.className = 'rng-num result';
   el.textContent = results.join('  ');
   document.getElementById('rngSublabel').textContent =
-    count===1 ? (lang==='uk'?'обрано літеру':'letter chosen')
-              : (lang==='uk'?'обрано '+count+' літери':'chosen '+count+' letters');
+    count===1 ? 'обрано літеру' : 'обрано '+count+' літери';
 
   if(noRep) results.forEach(function(l){ lettersUsed.push(l); });
 
@@ -868,20 +1368,26 @@ function setRngMode(mode) {
   document.getElementById('rng-nums-panel').style.display    = mode==='nums'    ? '' : 'none';
   document.getElementById('rng-words-panel').style.display   = mode==='words'   ? '' : 'none';
   document.getElementById('rng-letters-panel').style.display = mode==='letters' ? '' : 'none';
+  document.getElementById('rng-tasks-panel').style.display   = mode==='tasks'   ? '' : 'none';
+  document.getElementById('rng-result-default').style.display = mode==='tasks'  ? 'none' : '';
+  document.getElementById('task-result').style.display = 'none';
   document.getElementById('rngNum').textContent = '—';
   document.getElementById('rngNum').className = 'rng-num';
   document.getElementById('rngSublabel').textContent = 'натисни «генерувати»';
   document.getElementById('rngChips').innerHTML = '<span class="empty">поки порожньо…</span>';
+  document.getElementById('genBtn').textContent = mode==='tasks' ? '🎪 Завдання!' : '✨ Генерувати';
   rngHist=[]; wordsHist=[]; lettersHist=[]; lettersUsed=[];
+  if(taskTimer) clearInterval(taskTimer);
   if(mode==='nums') updatePoolInfo();
   else if(mode==='words') updateWordsPoolInfo();
-  else updateLettersPoolInfo();
+  else if(mode==='letters') updateLettersPoolInfo();
 }
 
 function generateCurrent() {
   if(rngMode==='nums')    generateNum();
   else if(rngMode==='words')   generateWords();
-  else generateLetters();
+  else if(rngMode==='letters') generateLetters();
+  else if(rngMode==='tasks')   generateTask();
 }
 
 // ── WORDS GENERATOR ───────────────────────────────────────
