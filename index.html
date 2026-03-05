@@ -85,7 +85,7 @@ h1 {
 }
 
 /* ── PAGES ── */
-.page { width: 100%; max-width: 400px; display: none; flex-direction: column; align-items: center; }
+.page { width: 100%; max-width: 400px; display: none; flex-direction: column; align-items: center; gap: 0; }
 .page.active { display: flex; }
 
 /* ── SELECTOR ── */
@@ -96,7 +96,7 @@ h1 {
   padding: 0.25rem;
   border-radius: 12px;
   border: 1px solid #252530;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
 }
 
 .sel {
@@ -122,7 +122,7 @@ h1 {
   gap: 1.2rem;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.4rem;
   flex-wrap: wrap;
   min-height: 116px;
 }
@@ -177,7 +177,7 @@ h1 {
   border-radius: 50px;
   cursor: pointer;
   box-shadow: 0 4px 24px rgba(245,200,66,0.25);
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.4rem;
   -webkit-appearance: none;
   outline: none;
   -webkit-tap-highlight-color: transparent;
@@ -190,16 +190,34 @@ h1 {
 }
 
 /* ── RESULT ── */
-.result { text-align:center; min-height:72px; margin-bottom:1.6rem; }
+.result {
+  text-align: center;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-bottom: 0;
+  padding: 0;
+}
 
 .res-num {
   font-size: 3.8rem;
   font-weight: 900;
   line-height: 1;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #2ecc71;
   letter-spacing: -0.02em;
   opacity: 0.12;
   transition: opacity 0.2s;
+  flex-shrink: 0;
 }
 .res-num.show { opacity: 1; }
 .res-label {
@@ -207,14 +225,15 @@ h1 {
   color: #3e3e4a;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  margin-bottom: 0.2rem;
   transition: color 0.3s;
-  min-height: 1em;
+  height: 14px;
+  line-height: 1;
+  flex-shrink: 0;
 }
 .res-label.show { color: #6e6e7a; }
 
 /* ── HISTORY ── */
-.hist-wrap { width:100%; margin-bottom: 0.5rem; }
+.hist-wrap { width:100%; margin-bottom: 0; }
 .hist-head {
   font-size: 0.6rem;
   color: #3e3e4a;
@@ -258,7 +277,7 @@ h1 {
   border-radius: 18px;
   padding: 1.4rem 1.4rem 1rem;
   width: 100%;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.6rem;
 }
 
 .rng-label {
@@ -289,7 +308,8 @@ h1 {
   outline: none;
   -webkit-appearance: none;
   text-align: center;
-  width: 72px;
+  min-width: 0;
+  width: 100%;
 }
 .rng-input:focus { border-color: #3e3e5a; }
 
@@ -331,40 +351,52 @@ h1 {
 
 /* ── RNG RESULT ── */
 .rng-result {
-  text-align: center;
-  margin-bottom: 1.6rem;
-  min-height: 84px;
+  width: 100%;
+  height: 100px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  overflow: hidden;
+  margin-bottom: 0;
 }
-
+.rng-sublabel {
+  font-size: 0.58rem;
+  color: #3e3e4a;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1;
+  height: 14px;
+  flex-shrink: 0;
+}
 .rng-num {
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 900;
   line-height: 1;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #2ecc71;
   opacity: 0.12;
   letter-spacing: -0.03em;
   transition: color 0.12s, opacity 0.18s;
   word-break: break-word;
   text-align: center;
+  max-width: 100%;
+  flex-shrink: 0;
 }
-.rng-num.show    { opacity: 1; }
 .rng-num.spinning { color: #f5c842; opacity: 1; }
 .rng-num.result   { color: #2ecc71; opacity: 1; }
-
-.rng-sublabel {
-  font-size: 0.62rem;
-  color: #3e3e4a;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin-top: 0.5rem;
-}
 
 .rng-pool-info {
   font-size: 0.68rem;
   color: #3e3e4a;
   text-align: center;
-  margin-bottom: 0.8rem;
-  min-height: 1rem;
+  margin-bottom: 0.6rem;
+  min-height: 0;
 }
 .rng-pool-info span { color: #f5c842; }
 
@@ -444,6 +476,121 @@ h1 {
 }
 .task-timer-bar.urgent { background: #f5c842; }
 
+/* ── TIMER ── */
+.timer-card {
+  width: 100%;
+  background: #161618;
+  border: 1px solid #222228;
+  border-radius: 20px;
+  padding: 1.8rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1rem;
+}
+.timer-display {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #f0ede8;
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s;
+}
+.timer-display.urgent { color: #f5c842; }
+.timer-display.done   { color: #2ecc71; }
+.timer-presets {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.timer-preset {
+  background: #1a1a20;
+  border: 1px solid #252530;
+  border-radius: 50px;
+  color: #8e8e98;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.timer-preset:active, .timer-preset.on {
+  background: #2ecc71;
+  border-color: #2ecc71;
+  color: #111114;
+}
+.timer-custom-wrap {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.timer-btns {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  width: 100%;
+}
+
+/* ── SCORE ── */
+.score-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+.score-card {
+  background: #161618;
+  border: 1px solid #222228;
+  border-radius: 16px;
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+.score-name {
+  font-size: 0.65rem;
+  color: #6e6e7a;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+.score-num {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: #f0ede8;
+  line-height: 1;
+}
+.score-btns {
+  display: flex;
+  gap: 0.4rem;
+}
+.score-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #252530;
+  background: #1a1a20;
+  color: #f0ede8;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s;
+}
+.score-btn.plus:active  { background: #2ecc71; border-color: #2ecc71; color: #111; }
+.score-btn.minus:active { background: #e74c3c; border-color: #e74c3c; color: #fff; }
+
 /* ── GAME OF DAY ── */
 .game-card {
   width: 100%;
@@ -451,7 +598,7 @@ h1 {
   border: 1px solid #222228;
   border-radius: 20px;
   padding: 1.8rem 1.6rem 1.6rem;
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.4rem;
   position: relative;
 }
 .game-badge {
@@ -507,71 +654,13 @@ h1 {
   background: rgba(245,200,66,0.07);
   letter-spacing: 0.04em;
 }
-.game-card {
-  width: 100%;
-  background: #161618;
-  border: 1px solid #222228;
-  border-radius: 20px;
-  padding: 1.8rem 1.6rem 1.6rem;
-  margin-bottom: 1.6rem;
-  position: relative;
-}
-
-.game-badge {
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #f5c842;
-  opacity: 0.7;
-  margin-bottom: 0.8rem;
-}
-
-.game-title {
-  font-size: 1.9rem;
-  font-weight: 900;
-  color: #f0ede8;
-  letter-spacing: -0.01em;
-  line-height: 1.1;
-  margin-bottom: 1rem;
-}
-
-.game-desc {
-  font-size: 0.88rem;
-  color: #8e8e98;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-.game-players {
-  font-size: 0.62rem;
-  color: #4e4e5a;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.game-promo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.6rem;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.game-promo-text {
-  font-size: 0.68rem;
-  color: #4e4e5a;
-  letter-spacing: 0.08em;
-}
-
 .game-tomorrow {
   text-align: center;
   padding: 1.2rem 1rem;
   background: #161618;
   border: 1px solid #222228;
   border-radius: 16px;
-  margin-bottom: 1.4rem;
+  margin-bottom: 0;
   width: 100%;
 }
 .game-tomorrow-text {
@@ -583,29 +672,22 @@ h1 {
   display: none;
 }
 
-.game-promo-btn {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #f5c842;
-  text-decoration: none;
-  border: 1px solid rgba(245,200,66,0.35);
-  border-radius: 50px;
-  padding: 0.5rem 1.4rem;
-  background: rgba(245,200,66,0.07);
-  letter-spacing: 0.04em;
-}
+
 </style>
 </head>
 <body>
 
 <h1>ТАТУСІГРИ</h1>
-<p class="sub">Кубик та генератор для ігор з дітьми</p>
+<p class="sub">Усі необхідні інструменти для ігор</p>
 
-<div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;margin-bottom:1.4rem;font-size:0.68rem;letter-spacing:0.06em;">
-  <span style="color:#6e6e7a;">Створив для батьків, що грають з дітьми</span>
-  <a href="https://www.instagram.com/vitalii.golounin/" target="_blank" style="display:inline-flex;align-items:center;gap:0.35rem;color:#f0ede8;text-decoration:none;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:50px;padding:0.25rem 0.75rem;font-weight:600;">Віталій Голоунін
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
-  </a>
+<div style="display:flex;flex-direction:column;align-items:center;gap:0.3rem;margin-top:0.4rem;margin-bottom:1.4rem;">
+  <span style="font-size:0.78rem;color:#f0ede8;letter-spacing:0.04em;font-weight:500;">Створено для тих, хто грає з дітьми</span>
+  <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.65rem;color:#6e6e7a;letter-spacing:0.06em;">
+    <span style="color:#f0ede8;font-size:0.75rem;">Автор:</span>
+    <a href="https://www.instagram.com/vitalii.golounin/" target="_blank" style="display:inline-flex;align-items:center;gap:0.35rem;color:#f0ede8;text-decoration:none;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:50px;padding:0.25rem 0.75rem;font-weight:600;font-size:0.68rem;">Віталій Голоунін
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+    </a>
+  </div>
 </div>
 
 <!-- Language switcher -->
@@ -628,12 +710,12 @@ h1 {
 
   <div class="dice-row" id="diceRow"></div>
 
-  <button class="btn-main" id="rollBtn" onclick="rollAll()">🎲 Кинути</button>
-
   <div class="result">
     <div class="res-label" id="resLabel"></div>
     <div class="res-num" id="resNum">—</div>
   </div>
+
+  <button class="btn-main" id="rollBtn" onclick="rollAll()" style="margin-top:1rem;">🎲 Кинути</button>
 
   <div class="hist-wrap">
     <div class="hist-head" id="diceHistHead">Історія кидків
@@ -648,15 +730,21 @@ h1 {
 <div class="page" id="page-rng">
 
   <!-- Sub-tabs -->
-  <div class="selector" style="margin-bottom:1.8rem;">
-    <button class="sel on" data-mode="nums"    onclick="setRngMode('nums')"     >🔢 Числа</button>
-    <button class="sel"    data-mode="words"   onclick="setRngMode('words')"    >🔤 Слова</button>
-    <button class="sel"    data-mode="letters" onclick="setRngMode('letters')" >🔡 Літери</button>
-    <button class="sel"    data-mode="tasks"   onclick="setRngMode('tasks')"   >🎪 Завдання</button>
+  <div style="display:flex;flex-direction:column;gap:0.4rem;width:100%;margin-bottom:1.4rem;">
+    <div class="selector" style="margin-bottom:0;width:100%;">
+      <button class="sel on" data-mode="nums"    onclick="setRngMode('nums')"    style="flex:1;text-align:center;">🔢 Числа</button>
+      <button class="sel"    data-mode="words"   onclick="setRngMode('words')"   style="flex:1;text-align:center;">🔤 Слова</button>
+      <button class="sel"    data-mode="letters" onclick="setRngMode('letters')" style="flex:1;text-align:center;">🔡 Літери</button>
+    </div>
+    <div class="selector" style="margin-bottom:0;width:100%;">
+      <button class="sel"    data-mode="tasks"   onclick="setRngMode('tasks')"   style="flex:1;text-align:center;">🎪 Завдання</button>
+      <button class="sel"    data-mode="timer"   onclick="setRngMode('timer')"   style="flex:1;text-align:center;">⏱️ Таймер</button>
+      <button class="sel"    data-mode="score"   onclick="setRngMode('score')"   style="flex:1;text-align:center;">⚽ Табло</button>
+    </div>
   </div>
 
   <!-- NUMBERS panel -->
-  <div id="rng-nums-panel">
+  <div id="rng-nums-panel" style="width:100%;margin-bottom:1.4rem;">
     <div class="rng-card">
       <div class="rng-label">Діапазон чисел</div>
       <div class="rng-row">
@@ -683,7 +771,7 @@ h1 {
   </div>
 
   <!-- WORDS panel -->
-  <div id="rng-words-panel" style="display:none;width:100%;">
+  <div id="rng-words-panel" style="display:none;width:100%;margin-bottom:1.4rem;">
     <div class="rng-card">
       <div class="rng-label">Введіть слова через кому</div>
       <textarea id="wordsInput" placeholder="кіт, собака, папуга, черепаха…" style="width:100%;min-height:80px;background:#111114;border:1px solid #2c2c36;border-radius:8px;color:#f0ede8;font-size:0.9rem;padding:0.6rem 0.8rem;outline:none;resize:vertical;font-family:inherit;margin-top:0.4rem;line-height:1.5;"></textarea>
@@ -703,7 +791,7 @@ h1 {
   </div>
 
   <!-- LETTERS panel -->
-  <div id="rng-letters-panel" style="display:none;width:100%;">
+  <div id="rng-letters-panel" style="display:none;width:100%;margin-bottom:1.4rem;">
     <div class="rng-card">
       <div class="rng-label">Українська абетка</div>
       <div class="rng-row">
@@ -724,17 +812,17 @@ h1 {
   </div>
 
   <!-- TASKS panel -->
-  <div id="rng-tasks-panel" style="display:none;width:100%;">
+  <div id="rng-tasks-panel" style="display:none;width:100%;margin-bottom:1.4rem;">
     <div class="rng-card">
-      <div class="rng-label">Для кого завдання?</div>
-      <div class="selector" style="margin-bottom:0;border:none;background:transparent;padding:0;">
-        <button class="sel on" id="task-for-1" onclick="setTaskFor(1)">👤 Для одного</button>
-        <button class="sel"    id="task-for-2" onclick="setTaskFor(2)">👥 Для двох</button>
+      <div class="rng-label">Оберіть тип завдань</div>
+      <div class="selector" style="margin-bottom:0;border:none;background:transparent;padding:0;justify-content:center;">
+        <button class="sel on" id="task-for-1" onclick="setTaskFor(1)" style="flex:1;text-align:center;">👤 Персональні</button>
+        <button class="sel"    id="task-for-2" onclick="setTaskFor(2)" style="flex:1;text-align:center;">👥 Групові</button>
       </div>
     </div>
   </div>
 
-  <div id="task-result" style="display:none;width:100%;margin-bottom:1.6rem;">
+  <div id="task-result" style="display:none;width:100%;margin-bottom:1.4rem;">
     <div class="task-card">
       <div class="task-emoji" id="taskEmoji"></div>
       <div class="task-text" id="taskText"></div>
@@ -746,14 +834,54 @@ h1 {
     </div>
   </div>
 
-  <div class="rng-result" id="rng-result-default">
-    <div class="rng-num" id="rngNum" style="font-size:2.8rem;word-break:break-word;text-align:center;">—</div>
-    <div class="rng-sublabel" id="rngSublabel">натисни «генерувати»</div>
+  <!-- TIMER panel -->
+  <div id="rng-timer-panel" style="display:none;width:100%;">
+    <div class="timer-card">
+      <div class="timer-display" id="timerDisplay">00:00</div>
+      <div class="timer-presets">
+        <button class="timer-preset" onclick="timerPreset(1)">1 хв</button>
+        <button class="timer-preset" onclick="timerPreset(2)">2 хв</button>
+        <button class="timer-preset" onclick="timerPreset(5)">5 хв</button>
+        <button class="timer-preset" onclick="timerPreset(10)">10 хв</button>
+      </div>
+      <div class="timer-custom-wrap">
+        <input class="rng-input" type="number" id="timerCustom" placeholder="хв" min="1" max="99" style="width:80px;text-align:center;">
+        <button class="timer-preset" onclick="timerCustomSet()">Свій</button>
+      </div>
+      <div class="timer-btns" style="display:flex;gap:0.7rem;align-items:stretch;width:100%;">
+        <button class="btn-main" id="timerStartBtn" onclick="timerToggle()" style="flex:1;margin-bottom:0;">▶ Старт</button>
+        <button onclick="timerReset()" style="padding:0.9rem 1.4rem;background:#1a1a20;border:1px solid #252530;border-radius:50px;color:#f0ede8;font-size:0.9rem;font-weight:700;cursor:pointer;letter-spacing:0.05em;-webkit-tap-highlight-color:transparent;white-space:nowrap;">Скид</button>
+      </div>
+    </div>
   </div>
 
-  <button class="btn-main" id="genBtn" onclick="generateCurrent()">✨ Генерувати</button>
+  <!-- SCORE panel -->
+  <div id="rng-score-panel" style="display:none;width:100%;">
+    <div class="score-setup" id="scoreSetup">
+      <div class="rng-label">Кількість гравців</div>
+      <div class="selector" style="margin-bottom:1rem;border:none;background:transparent;padding:0;">
+        <button class="sel on" onclick="setScorePlayers(2)">2</button>
+        <button class="sel"    onclick="setScorePlayers(3)">3</button>
+        <button class="sel"    onclick="setScorePlayers(4)">4</button>
+        <button class="sel"    onclick="setScorePlayers(5)">5</button>
+        <button class="sel"    onclick="setScorePlayers(6)">6</button>
+        <button class="sel"    onclick="setScorePlayers(7)">7</button>
+        <button class="sel"    onclick="setScorePlayers(8)">8</button>
+        <button class="sel"    onclick="setScorePlayers(10)">10</button>
+      </div>
+    </div>
+    <div class="score-grid" id="scoreGrid"></div>
+    <button class="btn-clear" onclick="scoreReset()" style="margin-top:0.5rem;">Скинути рахунок</button>
+  </div>
 
-  <div class="hist-wrap">
+  <div class="rng-result" id="rng-result-default">
+    <div class="rng-sublabel" id="rngSublabel">натисни «генерувати»</div>
+    <div class="rng-num" id="rngNum">—</div>
+  </div>
+
+  <button class="btn-main" id="genBtn" onclick="generateCurrent()" style="margin-top:1rem;">✨ Генерувати</button>
+
+  <div class="hist-wrap" id="rngHistWrap">
     <div class="hist-head">
       <span>Результати</span>
       <button class="btn-clear" onclick="clearRngHist()">очистити</button>
@@ -781,34 +909,66 @@ h1 {
     <a href="https://tatusigry.wayforpay.link/" target="_blank" style="display:inline-block;font-size:0.95rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;padding:0.9rem 2rem;background:#f5c842;color:#111114;border:none;border-radius:50px;text-decoration:none;box-shadow:0 4px 24px rgba(245,200,66,0.25);">🎲 Отримай збірку «101 гра з дітьми» зараз</a>
   </div>
 
-  <div class="game-promo" id="gamePromo">
-    <div class="game-promo-text">Ще 100 ігор у збірці</div>
-    <a href="https://tatusigry.wayforpay.link/" target="_blank" class="game-promo-btn">«101 гра з дітьми»</a>
-  </div>
+</div>
+
+<!-- ═══ SHARED BOTTOM ═══ -->
+<div id="shared-bottom" style="width:100%;max-width:400px;display:flex;flex-direction:column;align-items:center;gap:0.8rem;margin-top:0;padding-top:1.4rem;border-top:1px solid #1e1e28;">
 
   <div class="share-note">
     <div>Для швидкого доступу збережіть посилання в нотатках чи на початковий екран. Працює офлайн.</div>
     <details style="display:inline;cursor:pointer;">
       <summary style="display:inline;list-style:none;outline:none;color:#f5c842;opacity:0.9;text-decoration:underline;text-underline-offset:3px;">📲 Інструкція з встановлення</summary>
-      <div style="margin-top:0.8rem;background:#1a1a20;border:1px solid #222228;border-radius:12px;padding:1rem;font-size:0.7rem;line-height:1.9;color:#9e9ea8;text-align:left;">
+      <div style="margin-top:0.8rem;background:#1a1a20;border:1px solid #222228;border-radius:12px;padding:1rem;font-size:0.75rem;line-height:2;color:#9e9ea8;text-align:left;">
+
         <div style="margin-bottom:0.6rem;color:#f5c842;font-weight:700;letter-spacing:0.1em;">🍎 iPhone / iPad</div>
         <div>1. Відкрий посилання в <b style="color:#f0ede8;">Safari</b></div>
-        <div>2. Натисни кнопку <b style="color:#f0ede8;">«Поділитись»</b> внизу екрану</div>
-        <div>3. Обери <b style="color:#f0ede8;">«На початковий екран»</b></div>
-        <div>4. Натисни <b style="color:#f0ede8;">«Додати»</b></div>
-        <div style="margin-top:0.8rem;margin-bottom:0.6rem;color:#f5c842;font-weight:700;letter-spacing:0.1em;">🤖 Android</div>
+        <div style="display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;">
+          <span>2. Натисни</span>
+          <span style="display:inline-flex;align-items:center;justify-content:center;gap:0.3rem;background:#1e1e28;border:1px solid #3e3e4a;border-radius:6px;padding:2px 8px;">
+            <svg width="14" height="16" viewBox="0 0 14 16" fill="none" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="7,1 7,10"/>
+              <polyline points="4,4 7,1 10,4"/>
+              <path d="M2,6 L2,14 L12,14 L12,6"/>
+            </svg>
+            <span style="color:#f0ede8;font-size:0.75rem;">Поширити</span>
+          </span>
+          <span>внизу екрану</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;">
+          <span>3. Прокрути список і натисни</span>
+          <span style="display:inline-flex;align-items:center;justify-content:center;background:#1e1e28;border:1px solid #3e3e4a;border-radius:6px;padding:2px 8px;color:#f0ede8;font-weight:700;letter-spacing:0.1em;font-size:0.8rem;">•••</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;">
+          <span>4. Обери</span>
+          <span style="display:inline-flex;align-items:center;gap:0.3rem;background:#1e1e28;border:1px solid #3e3e4a;border-radius:6px;padding:2px 8px;color:#f0ede8;font-size:0.75rem;">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/></svg>
+            На початковий екран
+          </span>
+        </div>
+        <div>5. Натисни <b style="color:#f0ede8;">Додати</b></div>
+
+        <div style="margin-top:1rem;margin-bottom:0.6rem;color:#f5c842;font-weight:700;letter-spacing:0.1em;">🤖 Android</div>
         <div>1. Відкрий посилання в <b style="color:#f0ede8;">Chrome</b></div>
-        <div>2. Натисни <b style="color:#f0ede8;">⋮</b> (три крапки) вгорі</div>
-        <div>3. Обери <b style="color:#f0ede8;">«Додати на головний екран»</b></div>
-        <div>4. Натисни <b style="color:#f0ede8;">«Додати»</b></div>
+        <div style="display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;">
+          <span>2. Натисни</span>
+          <span style="display:inline-flex;align-items:center;justify-content:center;background:#1e1e28;border:1px solid #3e3e4a;border-radius:6px;padding:2px 8px;color:#f0ede8;font-weight:900;letter-spacing:0.05em;">⋮</span>
+          <span>вгорі праворуч</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;">
+          <span>3. Обери</span>
+          <span style="display:inline-flex;align-items:center;gap:0.3rem;background:#1e1e28;border:1px solid #3e3e4a;border-radius:6px;padding:2px 8px;color:#f0ede8;font-size:0.75rem;">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/></svg>
+            Додати на головний екран
+          </span>
+        </div>
+        <div>4. Натисни <b style="color:#f0ede8;">Додати</b></div>
+
       </div>
     </details>
   </div>
 
-  <div style="margin-top:1rem;display:flex;flex-direction:column;align-items:center;gap:0.7rem;">
-    <p style="font-size:0.7rem;color:#6e6e7a;letter-spacing:0.08em;text-align:center;">Хочеш більше ідей для гри з дитиною?</p>
-    <a href="https://tatusigry.wayforpay.link/" target="_blank" style="font-size:0.72rem;font-weight:600;color:#f5c842;letter-spacing:0.08em;text-decoration:none;border:1px solid rgba(245,200,66,0.35);border-radius:50px;padding:0.4rem 1.2rem;background:rgba(245,200,66,0.07);">🎲 101 гра з дітьми</a>
-  </div>
+  <p style="font-size:0.72rem;color:#6e6e7a;letter-spacing:0.06em;text-align:center;">Хочеш більше ідей для гри з дитиною?</p>
+  <a href="https://tatusigry.wayforpay.link/" target="_blank" style="font-size:0.82rem;font-weight:700;color:#f5c842;letter-spacing:0.06em;text-decoration:none;border:1px solid rgba(245,200,66,0.35);border-radius:50px;padding:0.5rem 1.4rem;background:rgba(245,200,66,0.07);">🎲 101 гра з дітьми</a>
 
 </div>
 
@@ -821,7 +981,7 @@ function switchTab(tab) {
   var tabs = ['dice','rng','game'];
   var btns = document.querySelectorAll('.mtab');
   btns[tabs.indexOf(tab)].classList.add('on');
-  if(tab === 'game') { gameClicked = false; showDailyGame(); document.getElementById('gameTomorrow').style.display='none'; document.getElementById('gamePromo').style.display='flex'; document.querySelector('#page-game .btn-main').style.display=''; }
+  if(tab === 'game') { gameClicked = false; showDailyGame(); document.getElementById('gameTomorrow').style.display='none'; document.querySelector('#page-game .btn-main').style.display=''; }
 }
 
 // ── TASKS ─────────────────────────────────────────────────
@@ -830,69 +990,109 @@ var taskTimer = null;
 var tasksUsed = [];
 
 var TASKS_1 = [
-  {e:'🐸', t:'Стрибай як жабка 5 разів', s:10},
-  {e:'🐶', t:'Гавкай як пес 3 рази', s:8},
-  {e:'🐱', t:'Нявкай як кіт якомога жалібніше', s:8},
-  {e:'🐘', t:'Походи як слон — повільно і важко', s:10},
-  {e:'🦁', t:'Зарви як лев', s:5},
-  {e:'🐧', t:'Походи як пінгвін з рівною спиною', s:10},
-  {e:'🦊', t:'Покрутись навколо себе 3 рази', s:8},
-  {e:'🐍', t:'Проповзи по підлозі як змія', s:10},
-  {e:'🦋', t:'Помахай руками як крилами метелика', s:8},
-  {e:'🐻', t:'Пореви як ведмідь і вдар себе в груди', s:5},
-  {e:'👂', t:'Візьми себе за праве вухо', s:5},
-  {e:'👃', t:'Торкнись носа лівою рукою', s:5},
-  {e:'🦶', t:'Постій на одній нозі', s:10},
-  {e:'🙃', t:'Зроби кумедну гримасу і не смійся', s:8},
-  {e:'💃', t:'Потанцюй як ніхто не дивиться', s:10},
-  {e:'🤸', t:'Зроби 3 присідання', s:10},
-  {e:'🦀', t:'Походи боком як краб', s:10},
-  {e:'🐌', t:'Рухайся якомога повільніше 10 секунд', s:10},
-  {e:'🙊', t:'Говори пошепки наступні 30 секунд', s:5},
-  {e:'🤖', t:'Рухайся і говори як робот', s:10},
-  {e:'🌀', t:'Покружляй на місці 5 разів', s:8},
-  {e:'🐊', t:'Лягай на підлогу і повзи як крокодил', s:10},
-  {e:'🦒', t:'Тягнись вгору — ти жираф!', s:8},
-  {e:'🐒', t:'Почухай голову і пахви як мавпа', s:8},
-  {e:'🌬️', t:'Видуй щоки і не випускай повітря', s:8},
-  {e:'👣', t:'Пройди по кімнаті навшпиньках', s:10},
-  {e:'🤪', t:'Зроби найбезумнішу гримасу', s:5},
-  {e:'🦕', t:'Ти динозавр — тупотіти і ревти!', s:8},
-  {e:'🎵', t:'Насвисти будь-яку мелодію', s:10},
-  {e:'🥊', t:'Постій у позі супергероя', s:8},
+  {e:'🐸', t:'Стрибай, як жабка, 5 разів', s:30},
+  {e:'🐶', t:'Гавкай, як пес, 3 рази', s:30},
+  {e:'🐱', t:'Нявкай, як кіт, якомога жалібніше', s:30},
+  {e:'🐘', t:'Ходи, як слон — повільно і важко', s:30},
+  {e:'🦁', t:'Заричи, як лев', s:30},
+  {e:'🐧', t:'Ходи, як пінгвін, з рівною спиною', s:30},
+  {e:'🦊', t:'Покрутись навколо себе 3 рази', s:30},
+  {e:'🐍', t:'Проповзи по підлозі, як змія', s:30},
+  {e:'🦋', t:'Помахай руками, як крилами метелика', s:30},
+  {e:'🐻', t:'Пореви, як ведмідь, і потупай ногами', s:30},
+  {e:'👂', t:'Візьми себе за праве вухо', s:30},
+  {e:'👃', t:'Торкнись носа лівою рукою', s:30},
+  {e:'🦶', t:'Постій на одній нозі', s:30},
+  {e:'🙃', t:'Зроби кумедну гримасу і не смійся', s:30},
+  {e:'💃', t:'Потанцюй, як ніхто не дивиться', s:30},
+  {e:'🤸', t:'Зроби 3 присідання', s:30},
+  {e:'🦀', t:'Ходи боком, як краб', s:30},
+  {e:'🐌', t:'Рухайся якомога повільніше', s:30},
+  {e:'🤖', t:'Рухайся і говори, як робот', s:30},
+  {e:'🌀', t:'Покружляй на місці 5 разів', s:30},
+  {e:'🐊', t:'Проповзи по підлозі, як крокодил', s:30},
+  {e:'🦒', t:'Тягнися вгору — ти жираф!', s:30},
+  {e:'🐒', t:'Почухай голову, як мавпа', s:30},
+  {e:'🌬️', t:'Надуй щоки і здуй уявні листочки з дерева', s:30},
+  {e:'👣', t:'Пройди по кімнаті навшпиньках', s:30},
+  {e:'🤪', t:'Зроби найбезумнішу гримасу', s:30},
+  {e:'🦕', t:'Ти динозавр — тупочи і ричи!', s:30},
+  {e:'🎵', t:'Насвисти будь-яку мелодію', s:30},
+  {e:'🥊', t:'Постій у позі супергероя', s:30},
+  {e:'🐴', t:'Ходи, як конячка, і цокай язиком', s:30},
+  {e:'🦜', t:'Повтори за мамою чи татом будь-яке слово смішним голосом', s:30},
+  {e:'🌊', t:'Покажи руками великі хвилі океану', s:30},
+  {e:'🎈', t:'Зроби вигляд, що тримаєш величезну кулю', s:30},
+  {e:'🚂', t:'Ходи по кімнаті, як паровозик — ту-ту!', s:30},
+  {e:'🦩', t:'Постій, як фламінго — на одній нозі з руками-крилами', s:30},
+  {e:'🐝', t:'Дзижчи, як бджола, і літай по кімнаті', s:30},
+  {e:'🌋', t:'Ти вулкан — повільно піднімай руки і вибухай зі звуком!', s:30},
+  {e:'🤣', t:'Засмійся якомога смішніше', s:30},
+  {e:'🎭', t:'Зроби сумне обличчя, потім радісне, потім здивоване', s:30},
+  {e:'🐠', t:'Відкривай і закривай рот, як рибка', s:30},
+  {e:'🦇', t:'Розкинь руки і покружляй, як кажан', s:30},
+  {e:'🌈', t:'Намалюй у повітрі великий яскравий рівчак', s:30},
+  {e:'🐇', t:'Стрибай, як зайчик, і посіпуй носом', s:30},
+  {e:'🎪', t:"Зроби вигляд, що жонглюєш трьома м'ячами", s:30},
+  {e:'🌙', t:'Зівни якомога гучніше і потягнися', s:30},
+  {e:'🦔', t:'Згорнися у клубочок, як їжачок', s:30},
+  {e:'🎠', t:'Покружляй, як карусель, з розкинутими руками', s:30},
+  {e:'🐺', t:'Завий, як вовк на місяць', s:30},
+  {e:'🍦', t:'Зроби вигляд, що їси величезне морозиво', s:30},
+  {e:'🤩', t:'Покажи своє найщасливіше обличчя', s:30},
 ];
 
 var TASKS_2 = [
-  {e:'🪞', t:'Один робить гримасу — інший копіює', s:10},
-  {e:'🤝', t:'Поплескайте одне одного по спині', s:5},
-  {e:'🤜', t:'Зробіть кулак-кулак-камінь-ножиці разом', s:8},
-  {e:'🐛', t:'Станьте гусеницею — один тримається за плечі іншого і разом рухайтесь', s:12},
-  {e:'🎭', t:'Один гавкає — інший мявкає. Хто голосніше?', s:8},
-  {e:'🎪', t:'Один робить рух — інший повторює', s:10},
-  {e:'🤸', t:'Присідніть разом одночасно 3 рази', s:10},
-  {e:'👐', t:'Пограйте в долоні — хлоп-хлоп-хлоп', s:8},
-  {e:'🦁', t:'Разом заревіть якомога голосніше', s:5},
-  {e:'🐘', t:'Ідіть по кімнаті як два слони разом', s:10},
-  {e:'🎵', t:'Разом насвистіть одну мелодію', s:10},
-  {e:'🤡', t:'Один говорить слово — інший відповідає протилежним', s:10},
-  {e:'🪩', t:'Потанцюйте разом 10 секунд', s:10},
-  {e:'👁️', t:'Дивіться одне одному в очі і не смійтесь', s:10},
-  {e:'🤲', t:'Торкніться долонями і не розривайте 8 секунд', s:8},
-  {e:'🦊', t:'Покрутіться разом навколо одне одного', s:8},
-  {e:'🐧', t:'Походіть як пінгвіни — плече до плеча', s:10},
-  {e:'🎤', t:'Разом скажіть одне слово одночасно — хто злагодженіше', s:8},
-  {e:'🤔', t:'Одночасно покажіть пальцем на стелю', s:5},
-  {e:'🌀', t:'Покружляйте разом тримаючись за руки', s:8},
-  {e:'😂', t:'Дивіться одне на одного і не смійтесь 10 секунд', s:10},
-  {e:'🐒', t:'Разом почухайте голову як мавпи', s:5},
-  {e:'🦶', t:'Обидва встаньте на одну ногу', s:10},
-  {e:'🎯', t:'Обидва покажіть на один і той самий предмет у кімнаті', s:5},
-  {e:'🤫', t:'Обидва мовчіть і спілкуйтесь тільки жестами', s:12},
-  {e:'🏆', t:'Обидва вдайте що отримали нагороду — поклоніться!', s:8},
-  {e:'🐸', t:'Разом стрибайте як жабки 3 рази', s:8},
-  {e:'🌬️', t:'Разом видуйте щоки і дивіться одне на одного', s:8},
-  {e:'🤖', t:'Обидва рухаєтесь як роботи до рахунку 10', s:10},
-  {e:'🦕', t:'Разом ревіть як динозаври — хто страшніше!', s:8},
+  {e:'🪞', t:'Один робить гримасу — інші копіюють', s:30},
+  {e:'🤝', t:'Поплескайте один одного по спині', s:30},
+  {e:'🎮', t:'Зіграйте в камінь-ножиці-папір', s:30},
+  {e:'🐛', t:'Станьте гусеницею — кожен тримається за плечі попереднього і рухайтеся разом', s:30},
+  {e:'🎭', t:'Один гавкає — інший нявкає. Хто голосніше?', s:30},
+  {e:'🎪', t:'Один робить рух — усі повторюють', s:30},
+  {e:'🤸', t:'Присідайте разом одночасно 3 рази', s:30},
+  {e:'👐', t:'Пограйте в долоні — хлоп-хлоп-хлоп', s:30},
+  {e:'🦁', t:'Разом заревіть якомога голосніше', s:30},
+  {e:'🐘', t:'Ходіть по кімнаті, як слони, один за одним', s:30},
+  {e:'🎵', t:'Разом насвистіть одну мелодію', s:30},
+  {e:'🤡', t:'Один говорить слово — інший відповідає протилежним', s:30},
+  {e:'🪩', t:'Потанцюйте разом 10 секунд', s:30},
+  {e:'👁️', t:'Дивіться один одному в очі і не смійтеся', s:30},
+  {e:'🤲', t:'Торкніться долонями і не розривайте', s:30},
+  {e:'🦊', t:'Покрутіться навколо один одного', s:30},
+  {e:'🐧', t:'Ходіть, як пінгвіни, — плече до плеча', s:30},
+  {e:'🎤', t:'Разом скажіть одне слово одночасно — хто злагодженіше?', s:30},
+  {e:'🤔', t:'Одночасно покажіть пальцем на стелю', s:30},
+  {e:'🌀', t:'Покружляйте разом, тримаючись за руки', s:30},
+  {e:'😜', t:'Усі одночасно покажіть язика — хто довше протримає?', s:30},
+  {e:'🐒', t:'Разом почухайте голову, як мавпи', s:30},
+  {e:'🦶', t:'Усі встаньте на одну ногу — хто довше?', s:30},
+  {e:'🌬️', t:'Усі надувають щоки і дивляться один на одного', s:30},
+  {e:'🤖', t:'Усі рухаються, як роботи', s:30},
+  {e:'🦕', t:'Разом ричіть, як динозаври — хто страшніше!', s:30},
+  {e:'🐸', t:'Разом стрибайте, як жабки, 3 рази', s:30},
+  {e:'🏆', t:'Усі вдають, що отримали нагороду — поклоніться!', s:30},
+  {e:'🤫', t:'Мовчіть і спілкуйтеся тільки жестами', s:30},
+  {e:'🚂', t:'Станьте паровозиком — кожен тримається за плечі попереднього — ту-ту!', s:30},
+  {e:'🌊', t:'Разом покажіть руками великі хвилі', s:30},
+  {e:'🎈', t:'Усі робіть вигляд, що летите на повітряній кулі', s:30},
+  {e:'🐝', t:'Усі дзижчать, як бджоли, і кружляють навколо один одного', s:30},
+  {e:'🦜', t:'Один каже слово — усі повторюють, як папуги', s:30},
+  {e:'🌋', t:'Разом робіть вигляд, що вивергаєтеся, як вулкани', s:30},
+  {e:'🤣', t:'Усі сміються — хто заразить інших першим?', s:30},
+  {e:'🎭', t:'Один показує емоцію без слів — інші вгадують', s:30},
+  {e:'🐠', t:'Усі відкривають і закривають рот, як рибки', s:30},
+  {e:'🦇', t:'Усі розкидають руки і кружляють, як кажани', s:30},
+  {e:'🐇', t:'Разом стрибайте, як зайчики, і посіпуйте носом', s:30},
+  {e:'🌙', t:'Усі позіхають якомога гучніше — хто перший позіхне по-справжньому?', s:30},
+  {e:'🐴', t:'Усі ходять по кімнаті, як конячки, і цокають язиком', s:30},
+  {e:'🎠', t:'Кружляйте, як карусель, тримаючись за руки', s:30},
+  {e:'🐺', t:'Разом завийте, як вовки на місяць', s:30},
+  {e:'🍦', t:'Усі вдають, що їдять величезне морозиво', s:30},
+  {e:'🤩', t:'Покажіть один одному найщасливіше обличчя', s:30},
+  {e:'🦩', t:'Усі стоять, як фламінго, на одній нозі — хто довше?', s:30},
+  {e:'🎪', t:"Один жонглює уявними м'ячами — інші ловлять", s:30},
+  {e:'🔄', t:'Усі одночасно покружляйте і зупиніться — хто рівніше стоїть?', s:30},
+  {e:'❤️', t:'Разом намалюйте у повітрі велике сердечко', s:30},
 ];
 
 function setTaskFor(n) {
@@ -1036,7 +1236,6 @@ function nextGame() {
   gameClicked = true;
   // Show tomorrow message, hide promo and button
   document.getElementById('gameTomorrow').style.display = 'block';
-  document.getElementById('gamePromo').style.display = 'none';
   document.querySelector('#page-game .btn-main').style.display = 'none';
 }
 
@@ -1239,6 +1438,8 @@ async function generateNum() {
 
   // Animate
   var el=document.getElementById('rngNum');
+  document.getElementById('rngSublabel').textContent=
+    count===1?'число від '+r.min+' до '+r.max:count+' числа від '+r.min+' до '+r.max;
   el.className='rng-num spinning';
   var flashes=8+Math.floor(Math.random()*4);
   for(var f=0;f<flashes;f++){
@@ -1255,8 +1456,7 @@ async function generateNum() {
   // Show result
   el.className='rng-num result';
   el.textContent=count===1?''+results[0]:results.join(', ');
-  document.getElementById('rngSublabel').textContent=
-    count===1?'число від '+r.min+' до '+r.max:count+' числа від '+r.min+' до '+r.max;
+  adaptRngFont(el);
 
   results.forEach(function(v){ addRngHist(v); });
   updatePoolInfo();
@@ -1325,6 +1525,8 @@ async function generateLetters() {
   var results = available.slice(0, count);
 
   var el = document.getElementById('rngNum');
+  document.getElementById('rngSublabel').textContent =
+    count===1 ? 'обрано літеру' : 'обрано '+count+' літери';
   el.className = 'rng-num spinning';
   var flashes = 7 + Math.floor(Math.random()*4);
   for(var f=0; f<flashes; f++){
@@ -1336,10 +1538,7 @@ async function generateLetters() {
 
   el.className = 'rng-num result';
   el.textContent = results.join('  ');
-  document.getElementById('rngSublabel').textContent =
-    count===1 ? 'обрано літеру' : 'обрано '+count+' літери';
-
-  if(noRep) results.forEach(function(l){ lettersUsed.push(l); });
+  adaptRngFont(el);
 
   lettersHist.unshift({val: results.join(', ')});
   if(lettersHist.length>60) lettersHist.pop();
@@ -1365,22 +1564,141 @@ function setRngMode(mode) {
   document.querySelectorAll('[data-mode]').forEach(function(b){
     b.className = 'sel' + (b.getAttribute('data-mode')===mode?' on':'');
   });
-  document.getElementById('rng-nums-panel').style.display    = mode==='nums'    ? '' : 'none';
-  document.getElementById('rng-words-panel').style.display   = mode==='words'   ? '' : 'none';
-  document.getElementById('rng-letters-panel').style.display = mode==='letters' ? '' : 'none';
-  document.getElementById('rng-tasks-panel').style.display   = mode==='tasks'   ? '' : 'none';
-  document.getElementById('rng-result-default').style.display = mode==='tasks'  ? 'none' : '';
+  var panels = ['nums','words','letters','tasks','timer','score'];
+  panels.forEach(function(p){
+    document.getElementById('rng-'+p+'-panel').style.display = mode===p ? '' : 'none';
+  });
+  var isUtil = mode==='timer' || mode==='score';
+  document.getElementById('rng-result-default').style.display = (mode==='tasks'||isUtil) ? 'none' : '';
   document.getElementById('task-result').style.display = 'none';
+  document.getElementById('genBtn').style.display = isUtil ? 'none' : '';
+  document.getElementById('rngHistWrap').style.display = isUtil ? 'none' : '';
+  document.getElementById('genBtn').textContent = mode==='tasks' ? '🎪 Завдання!' : '✨ Генерувати';
   document.getElementById('rngNum').textContent = '—';
   document.getElementById('rngNum').className = 'rng-num';
   document.getElementById('rngSublabel').textContent = 'натисни «генерувати»';
   document.getElementById('rngChips').innerHTML = '<span class="empty">поки порожньо…</span>';
-  document.getElementById('genBtn').textContent = mode==='tasks' ? '🎪 Завдання!' : '✨ Генерувати';
   rngHist=[]; wordsHist=[]; lettersHist=[]; lettersUsed=[];
   if(taskTimer) clearInterval(taskTimer);
   if(mode==='nums') updatePoolInfo();
   else if(mode==='words') updateWordsPoolInfo();
   else if(mode==='letters') updateLettersPoolInfo();
+  else if(mode==='score') renderScoreGrid();
+}
+
+// ── TIMER ─────────────────────────────────────────────────
+var timerInterval = null;
+var timerSeconds = 0;
+var timerTotal = 0;
+var timerRunning = false;
+
+function timerPreset(min) {
+  timerReset();
+  timerSeconds = min * 60;
+  timerTotal = timerSeconds;
+  timerUpdateDisplay();
+  document.querySelectorAll('.timer-preset').forEach(function(b){ b.classList.remove('on'); });
+}
+
+function timerCustomSet() {
+  var val = parseInt(document.getElementById('timerCustom').value);
+  if(!val || val < 1) return;
+  timerReset();
+  timerSeconds = val * 60;
+  timerTotal = timerSeconds;
+  timerUpdateDisplay();
+}
+
+function timerToggle() {
+  if(timerSeconds <= 0) return;
+  if(timerRunning) {
+    clearInterval(timerInterval);
+    timerRunning = false;
+    document.getElementById('timerStartBtn').textContent = '▶ Продовжити';
+  } else {
+    timerRunning = true;
+    document.getElementById('timerStartBtn').textContent = '⏸ Пауза';
+    timerInterval = setInterval(function(){
+      timerSeconds--;
+      timerUpdateDisplay();
+      if(timerSeconds <= 0) {
+        clearInterval(timerInterval);
+        timerRunning = false;
+        document.getElementById('timerStartBtn').textContent = '▶ Старт';
+        document.getElementById('timerDisplay').className = 'timer-display done';
+        playTimerAlarm();
+      }
+    }, 1000);
+  }
+}
+
+function timerReset() {
+  clearInterval(timerInterval);
+  timerRunning = false;
+  timerSeconds = timerTotal;
+  timerUpdateDisplay();
+  document.getElementById('timerStartBtn').textContent = '▶ Старт';
+  document.getElementById('timerDisplay').className = 'timer-display';
+}
+
+function timerUpdateDisplay() {
+  var m = Math.floor(timerSeconds / 60);
+  var s = timerSeconds % 60;
+  document.getElementById('timerDisplay').textContent =
+    (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  var pct = timerTotal > 0 ? timerSeconds / timerTotal : 1;
+  var el = document.getElementById('timerDisplay');
+  if(timerSeconds <= 10 && timerSeconds > 0) el.className = 'timer-display urgent';
+  else if(timerSeconds <= 0) el.className = 'timer-display done';
+  else el.className = 'timer-display';
+}
+
+// ── SCORE ─────────────────────────────────────────────────
+var scorePlayers = 2;
+var scoreData = [];
+
+function setScorePlayers(n) {
+  scorePlayers = n;
+  document.querySelectorAll('#scoreSetup .sel').forEach(function(b){
+    var val = parseInt(b.textContent);
+    b.className = 'sel' + (val === n ? ' on' : '');
+  });
+  scoreData = [];
+  for(var i=0;i<n;i++){
+    scoreData.push({name: 'Гравець '+(i+1), score: 0});
+  }
+  renderScoreGrid();
+}
+
+function renderScoreGrid() {
+  if(scoreData.length === 0) setScorePlayers(scorePlayers);
+  var grid = document.getElementById('scoreGrid');
+  var cols = scorePlayers <= 2 ? '1fr 1fr' : scorePlayers <= 6 ? '1fr 1fr' : '1fr 1fr 1fr';
+  grid.style.gridTemplateColumns = cols;
+  grid.innerHTML = scoreData.map(function(p,i){
+    return '<div class="score-card">'+
+      '<input class="score-name" value="'+p.name+'" '+
+        'onchange="scoreData['+i+'].name=this.value" '+
+        'onfocus="this.select()" '+
+        'style="width:100%;border:none;border-bottom:1px solid #252530;border-radius:0;padding:0.2rem 0;margin-bottom:0.4rem;">'+
+      '<div class="score-num" id="score-num-'+i+'">'+p.score+'</div>'+
+      '<div class="score-btns">'+
+        '<button class="score-btn minus" onclick="scoreChange('+i+',-1)">−</button>'+
+        '<button class="score-btn plus"  onclick="scoreChange('+i+',+1)">+</button>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+function scoreChange(i, delta) {
+  scoreData[i].score += delta;
+  document.getElementById('score-num-'+i).textContent = scoreData[i].score;
+  playClick();
+}
+
+function scoreReset() {
+  scoreData.forEach(function(p){ p.score = 0; });
+  renderScoreGrid();
 }
 
 function generateCurrent() {
@@ -1439,6 +1757,7 @@ async function generateWords() {
 
   // Animate
   var el = document.getElementById('rngNum');
+  document.getElementById('rngSublabel').textContent = count===1 ? 'обрано слово' : 'обрано '+count+' слова';
   el.className = 'rng-num spinning';
   var flashes = 7 + Math.floor(Math.random()*4);
   for(var f=0; f<flashes; f++){
@@ -1450,7 +1769,7 @@ async function generateWords() {
 
   el.className = 'rng-num result';
   el.textContent = results.join(', ');
-  document.getElementById('rngSublabel').textContent = count===1 ? 'обрано слово' : 'обрано '+count+' слова';
+  adaptRngFont(el);
 
   if(noRep) results.forEach(function(w){ wordsUsed.push(w); });
 
@@ -1491,6 +1810,33 @@ function getAudio() {
   return audioCtx;
 }
 
+function playTimerAlarm() {
+  try {
+    var ctx = getAudio();
+    var t = ctx.currentTime;
+    // Three beeps
+    [0, 0.35, 0.7].forEach(function(delay) {
+      var osc = ctx.createOscillator();
+      var gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(880, t + delay);
+      gain.gain.setValueAtTime(0, t + delay);
+      gain.gain.linearRampToValueAtTime(0.5, t + delay + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + delay + 0.28);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(t + delay);
+      osc.stop(t + delay + 0.3);
+    });
+  } catch(e) {}
+}
+
+function adaptRngFont(el) {
+  var len = el.textContent.length;
+  var size = len <= 3 ? '4rem' : len <= 6 ? '2.8rem' : len <= 12 ? '1.9rem' : '1.3rem';
+  el.style.fontSize = size;
+}
+
 function playClick() {
   try {
     var ctx = getAudio();
@@ -1523,6 +1869,26 @@ function playClick() {
   } catch(e){}
 }
 
+function playTimerEnd() {
+  try {
+    var ctx = getAudio();
+    var t = ctx.currentTime;
+    // Three ascending beeps
+    [0, 0.3, 0.6].forEach(function(offset, i) {
+      var src = ctx.createOscillator();
+      var gain = ctx.createGain();
+      src.type = 'sine';
+      src.frequency.value = 520 + i * 120;
+      gain.gain.setValueAtTime(0.45, t + offset);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + offset + 0.25);
+      src.connect(gain);
+      gain.connect(ctx.destination);
+      src.start(t + offset);
+      src.stop(t + offset + 0.3);
+    });
+  } catch(e) {}
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.btn-main').forEach(function(btn) {
     btn.addEventListener('touchstart', function() { playClick(); }, {passive: true});
@@ -1533,6 +1899,8 @@ document.addEventListener('DOMContentLoaded', function() {
 // INIT
 buildDice();
 updatePoolInfo();
+setRngMode('nums');
+setScorePlayers(2);
 
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('sw.js').catch(function(){});
