@@ -63,9 +63,9 @@ h1 {
 
 .mtab {
   flex: 1;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  padding: 0.55rem 0.5rem;
+  padding: 0.55rem 0.3rem;
   border-radius: 10px;
   border: none;
   background: transparent;
@@ -365,11 +365,16 @@ h1 {
 .rng-sublabel {
   font-size: 0.58rem;
   color: #3e3e4a;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  line-height: 1;
-  height: 14px;
+  line-height: 1.2;
+  min-height: 14px;
+  text-align: center;
+  width: 100%;
   flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .rng-num {
   font-size: 4rem;
@@ -568,25 +573,29 @@ h1 {
   font-weight: 900;
   color: #f0ede8;
   line-height: 1;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 .score-btns {
   display: flex;
   gap: 0.4rem;
 }
 .score-btn {
-  width: 36px;
-  height: 36px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   border: 1px solid #252530;
   background: #1a1a20;
   color: #f0ede8;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.1s;
+  -webkit-tap-highlight-color: transparent;
 }
 .score-btn.plus:active  { background: #2ecc71; border-color: #2ecc71; color: #111; }
 .score-btn.minus:active { background: #e74c3c; border-color: #e74c3c; color: #fff; }
@@ -755,7 +764,7 @@ h1 {
       </div>
       <div class="rng-row">
         <div class="rng-input-label">Кількість чисел</div>
-        <input class="rng-input" type="number" id="rngCount" value="1" min="1">
+        <input class="rng-input" type="number" id="rngCount" value="1" min="1" style="width:80px;flex:none;">
       </div>
       <div class="rng-row">
         <div class="toggle-wrap">
@@ -849,7 +858,7 @@ h1 {
         <button class="timer-preset" onclick="timerCustomSet()">Свій</button>
       </div>
       <div class="timer-btns" style="display:flex;gap:0.7rem;align-items:stretch;width:100%;">
-        <button class="btn-main" id="timerStartBtn" onclick="timerToggle()" style="flex:1;margin-bottom:0;">▶ Старт</button>
+        <button class="btn-main" id="timerStartBtn" onclick="timerToggle()" style="flex:1;margin-bottom:0;min-width:0;overflow:hidden;white-space:nowrap;">▶ Старт</button>
         <button onclick="timerReset()" style="padding:0.9rem 1.4rem;background:#1a1a20;border:1px solid #252530;border-radius:50px;color:#f0ede8;font-size:0.9rem;font-weight:700;cursor:pointer;letter-spacing:0.05em;-webkit-tap-highlight-color:transparent;white-space:nowrap;">Скид</button>
       </div>
     </div>
@@ -867,6 +876,7 @@ h1 {
         <button class="sel"    onclick="setScorePlayers(6)">6</button>
         <button class="sel"    onclick="setScorePlayers(7)">7</button>
         <button class="sel"    onclick="setScorePlayers(8)">8</button>
+        <button class="sel"    onclick="setScorePlayers(9)">9</button>
         <button class="sel"    onclick="setScorePlayers(10)">10</button>
       </div>
     </div>
@@ -1097,7 +1107,7 @@ var TASKS_2 = [
 ];
 
 function setTaskFor(n) {
-  playTap();
+  playSubTap();
   taskFor = n;
   document.getElementById('task-for-1').className = 'sel' + (n===1?' on':'');
   document.getElementById('task-for-2').className = 'sel' + (n===2?' on':'');
@@ -1288,7 +1298,7 @@ function buildDice() {
       face.id = 'face-'+idx;
       face.innerHTML = pipHTML(1);
       wrap.appendChild(face);
-      wrap.onclick = function(){ rollAll(); };
+      wrap.onclick = function(){ playClick(); rollAll(); };
       row.appendChild(wrap);
     })(i);
   }
@@ -1300,7 +1310,7 @@ function buildDice() {
 
 function setN(n) {
   if(n===N) return;
-  playTap();
+  playSubTap();
   N=n;
   document.querySelectorAll('.sel').forEach(function(b){
     b.className='sel'+(parseInt(b.getAttribute('data-n'))===n?' on':'');
@@ -1574,7 +1584,7 @@ var rngMode = 'nums';
 var wordsHist = [];
 
 function setRngMode(mode) {
-  if(rngMode !== mode) playTap();
+  if(rngMode !== mode) playSubTap();
   rngMode = mode;
   document.querySelectorAll('[data-mode]').forEach(function(b){
     b.className = 'sel' + (b.getAttribute('data-mode')===mode?' on':'');
@@ -1636,6 +1646,7 @@ function timerToggle() {
     timerInterval = setInterval(function(){
       timerSeconds--;
       timerUpdateDisplay();
+      playTick();
       if(timerSeconds <= 0) {
         clearInterval(timerInterval);
         timerRunning = false;
@@ -1696,7 +1707,7 @@ function renderScoreGrid() {
         'onchange="scoreData['+i+'].name=this.value" '+
         'onfocus="this.select()" '+
         'style="width:100%;border:none;border-bottom:1px solid #252530;border-radius:0;padding:0.2rem 0;margin-bottom:0.4rem;">'+
-      '<div class="score-num" id="score-num-'+i+'">'+p.score+'</div>'+
+      '<div class="score-num" id="score-num-'+i+'" onclick="scoreChange('+i+',+1)" title="+1">'+p.score+'</div>'+
       '<div class="score-btns">'+
         '<button class="score-btn minus" onclick="scoreChange('+i+',-1)">−</button>'+
         '<button class="score-btn plus"  onclick="scoreChange('+i+',+1)">+</button>'+
@@ -1850,6 +1861,41 @@ function adaptRngFont(el) {
   var len = el.textContent.length;
   var size = len <= 3 ? '4rem' : len <= 6 ? '2.8rem' : len <= 12 ? '1.9rem' : '1.3rem';
   el.style.fontSize = size;
+}
+
+function playTick() {
+  try {
+    var ctx = getAudio();
+    var t = ctx.currentTime;
+    var osc = ctx.createOscillator();
+    var gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(1200, t);
+    gain.gain.setValueAtTime(0.06, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.04);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(t);
+    osc.stop(t + 0.04);
+  } catch(e) {}
+}
+
+function playSubTap() {
+  try {
+    var ctx = getAudio();
+    var t = ctx.currentTime;
+    var osc = ctx.createOscillator();
+    var gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(900, t);
+    osc.frequency.exponentialRampToValueAtTime(700, t + 0.05);
+    gain.gain.setValueAtTime(0.1, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(t);
+    osc.stop(t + 0.05);
+  } catch(e) {}
 }
 
 function playTap() {
