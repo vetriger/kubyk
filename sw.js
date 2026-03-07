@@ -1,46 +1,47 @@
-var CACHE = 'tatusigry-v2';
+const CACHE = 'tatusigry-v1';
+const FILES = [
+  './',
+  './index.html'
+];
 
-// Cache on install
 self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open(CACHE).then(function(cache) {
-      return cache.addAll([
-        './',
-        './index.html',
-        './manifest.json'
-      ]);
+      return cache.addAll(FILES);
+    }).then(function() {
+      return self.skipWaiting();
     })
   );
-  self.skipWaiting();
 });
 
-// Clean old caches
 self.addEventListener('activate', function(e) {
   e.waitUntil(
     caches.keys().then(function(keys) {
       return Promise.all(
-        keys.filter(function(k){ return k !== CACHE; })
-            .map(function(k){ return caches.delete(k); })
+        keys.filter(function(k) { return k !== CACHE; })
+            .map(function(k) { return caches.delete(k); })
       );
+    }).then(function() {
+      return self.clients.claim();
     })
   );
-  self.clients.claim();
 });
 
-// Cache first — працює офлайн, при наявності інтернету оновлює кеш у фоні
 self.addEventListener('fetch', function(e) {
   e.respondWith(
-    caches.open(CACHE).then(function(cache) {
-      return cache.match(e.request).then(function(cached) {
-        var fetchPromise = fetch(e.request).then(function(response) {
-          if (response && response.status === 200) {
-            cache.put(e.request, response.clone());
-          }
+    caches.match(e.request).then(function(cached) {
+      if (cached) return cached;
+      return fetch(e.request).then(function(response) {
+        if (!response || response.status !== 200 || response.type !== 'basic') {
           return response;
-        }).catch(function() { return cached; });
-
-        // Return cached immediately if exists, fetch in background
-        return cached || fetchPromise;
+        }
+        var clone = response.clone();
+        caches.open(CACHE).then(function(cache) {
+          cache.put(e.request, clone);
+        });
+        return response;
+      }).catch(function() {
+        return caches.match('./index.html');
       });
     })
   );

@@ -1,9 +1,8 @@
 {
-  "name": "Кубик🎲Татусігри",
-  "short_name": "Кубик🎲Татусігри",
-  "description": "Кубик та генератор для ігор з дітьми",
-  "start_url": "./",
-  "scope": "./",
+  "name": "Кубик/Генератор",
+  "short_name": "Кубик/Генератор",
+  "description": "Усі необхідні інструменти для ігор з дітьми",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#111114",
   "theme_color": "#111114",
