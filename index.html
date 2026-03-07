@@ -17,9 +17,44 @@
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 
+/* ── ТЕМИ ── */
+:root {
+  --bg:        #111114;
+  --bg2:       #1a1a20;
+  --bg3:       #161618;
+  --bg4:       #1c1c22;
+  --border:    #252530;
+  --border2:   #222228;
+  --text:      #f0ede8;
+  --text2:     #8e8e98;
+  --text3:     #6e6e7a;
+  --text4:     #8e8e9e;
+  --text5:     #6e6e7e;
+  --accent:    #f5c842;
+  --green:     #2ecc71;
+  --input-bg:  #111114;
+}
+
+body.light {
+  --bg:        #f5f5f0;
+  --bg2:       #e2e2dc;
+  --bg3:       #ffffff;
+  --bg4:       #d8d8d2;
+  --border:    #c0c0b8;
+  --border2:   #b8b8b0;
+  --text:      #111114;
+  --text2:     #333336;
+  --text3:     #444440;
+  --text4:     #333336;
+  --text5:     #555550;
+  --accent:    #f5c842;
+  --green:     #4a9e6a;
+  --input-bg:  #ffffff;
+}
+
 body {
-  background: #111114;
-  color: #f0ede8;
+  background: var(--bg);
+  color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
   min-height: 100vh;
   display: flex;
@@ -30,6 +65,7 @@ body {
     radial-gradient(ellipse at 20% 0%,  rgba(245,200,66,0.06) 0%, transparent 55%),
     radial-gradient(ellipse at 80% 95%, rgba(46,204,113,0.04) 0%, transparent 55%);
   -webkit-text-size-adjust: 100%;
+  transition: background 0.2s, color 0.2s;
 }
 
 /* ── HEADER ── */
@@ -37,16 +73,16 @@ h1 {
   font-size: clamp(2.4rem, 9vw, 4.8rem);
   font-weight: 900;
   letter-spacing: -0.02em;
-  color: #f5c842;
+  color: var(--accent);
   text-shadow: 0 0 60px rgba(245,200,66,0.18);
   margin-bottom: 0.3rem;
   text-align: center;
 }
 
 .sub {
-  font-size: 0.6rem;
-  color: #f5c842;
-  letter-spacing: 0.14em;
+  font-size: 0.85rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
   text-align: center;
@@ -57,10 +93,10 @@ h1 {
 .main-tabs {
   display: flex;
   gap: 0.3rem;
-  background: #1a1a20;
+  background: var(--bg2);
   padding: 0.25rem;
   border-radius: 14px;
-  border: 1px solid #252530;
+  border: 1px solid var(--border);
   margin-bottom: 0.6rem;
   width: 100%;
   max-width: 400px;
@@ -74,7 +110,7 @@ h1 {
   border-radius: 10px;
   border: none;
   background: transparent;
-  color: #4e4e5a;
+  color: var(--text4);
   cursor: pointer;
   -webkit-appearance: none;
   outline: none;
@@ -85,7 +121,7 @@ h1 {
 }
 
 .mtab.on {
-  background: #f5c842;
+  background: var(--accent);
   color: #111114;
 }
 
@@ -97,10 +133,10 @@ h1 {
 .selector {
   display: flex;
   gap: 0.25rem;
-  background: #1a1a20;
+  background: var(--bg2);
   padding: 0.25rem;
   border-radius: 12px;
-  border: 1px solid #252530;
+  border: 1px solid var(--border);
   margin-bottom: 0;
 }
 
@@ -111,7 +147,7 @@ h1 {
   border-radius: 9px;
   border: none;
   background: transparent;
-  color: #4e4e5a;
+  color: var(--text4);
   cursor: pointer;
   -webkit-appearance: none;
   outline: none;
@@ -119,7 +155,7 @@ h1 {
   transition: background 0.15s, color 0.15s;
   white-space: nowrap;
 }
-.sel.on { background: #2ecc71; color: #111114; font-weight: 700; }
+.sel.on { background: var(--green); color: #111114; font-weight: 700; }
 
 /* ── DICE ── */
 .dice-row {
@@ -129,6 +165,9 @@ h1 {
   align-items: center;
   margin-bottom: 0;
   flex-wrap: wrap;
+  background: radial-gradient(ellipse at 50% 60%, rgba(255,255,255,0.04) 0%, transparent 70%);
+  border-radius: 24px;
+  padding: 1rem 1.5rem;
 }
 
 .die-wrap {
@@ -142,8 +181,8 @@ h1 {
 .die-face {
   width: 100%; height: 100%;
   border-radius: 22px;
-  background: #1c1c22;
-  border: 1.5px solid #252530;
+  background: var(--bg4);
+  border: 1.5px solid var(--border);
   box-shadow: 0 8px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04);
   display: grid;
   grid-template-areas: "tl . tr" "ml c mr" "bl . br";
@@ -158,12 +197,12 @@ h1 {
   background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, transparent 50%);
   pointer-events:none;
 }
-.die-face.lit { border-color:#2ecc71; box-shadow: 0 0 24px rgba(46,204,113,0.25), 0 8px 32px rgba(0,0,0,0.45); }
-.die-face.lit .pip { background:#2ecc71; box-shadow: 0 0 6px rgba(46,204,113,0.8); }
+.die-face.lit { border-color:var(--green); box-shadow: 0 0 24px rgba(46,204,113,0.25), 0 8px 32px rgba(0,0,0,0.45); }
+.die-face.lit .pip { background:var(--green); box-shadow: 0 0 6px rgba(46,204,113,0.8); }
 .die-face.rolling-tint { background:#201e10; border-color:#f5c842; box-shadow: 0 0 20px rgba(245,200,66,0.2), 0 8px 32px rgba(0,0,0,0.45); }
 .die-face.rolling-tint .pip { background:#f5c842; box-shadow: 0 0 6px rgba(245,200,66,0.8); }
 
-.pip { place-self:center; width:12px; height:12px; border-radius:50%; background:#f5c842; }
+.pip { place-self:center; width:12px; height:12px; border-radius:50%; background:var(--accent); }
 .pip.h { opacity:0; }
 .p-tl{grid-area:tl} .p-tr{grid-area:tr} .p-ml{grid-area:ml}
 .p-c{grid-area:c} .p-mr{grid-area:mr} .p-bl{grid-area:bl} .p-br{grid-area:br}
@@ -175,7 +214,7 @@ h1 {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.9rem 3.5rem;
-  background: #f5c842;
+  background: var(--accent);
   color: #111114;
   border: none;
   border-radius: 50px;
@@ -216,7 +255,7 @@ h1 {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  color: #2ecc71;
+  color: var(--green);
   letter-spacing: -0.02em;
   opacity: 0.12;
   transition: opacity 0.2s;
@@ -227,7 +266,7 @@ h1 {
 .res-num.show { opacity: 1; }
 .res-label {
   font-size: 0.6rem;
-  color: #3e3e4a;
+  color: var(--text5);
   letter-spacing: 0.25em;
   text-transform: uppercase;
   transition: color 0.3s;
@@ -235,13 +274,13 @@ h1 {
   line-height: 1;
   flex-shrink: 0;
 }
-.res-label.show { color: #6e6e7a; }
+.res-label.show { color: var(--text3); }
 
 /* ── HISTORY ── */
 .hist-wrap { width:100%; margin-bottom: 0; }
 .hist-head {
   font-size: 0.6rem;
-  color: #3e3e4a;
+  color: var(--text5);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   margin-bottom: 0.7rem;
@@ -249,12 +288,12 @@ h1 {
   align-items: center;
   gap: 0.6rem;
 }
-.hist-head::after { content:''; flex:1; height:1px; background:#1e1e28; }
+.hist-head::after { content:''; flex:1; height:1px; background:var(--border); }
 .btn-clear {
   font-size: 0.6rem;
-  color: #3e3e4a;
+  color: var(--text5);
   background: transparent;
-  border: 1px solid #252530;
+  border: 1px solid var(--border);
   border-radius: 20px;
   padding: 0.2rem 0.65rem;
   cursor: pointer;
@@ -267,18 +306,18 @@ h1 {
 .chip {
   font-size: 0.75rem;
   padding: 0.2rem 0.65rem;
-  background: #1a1a20;
-  border: 1px solid #252530;
+  background: var(--bg2);
+  border: 1px solid var(--border);
   border-radius: 50px;
-  color: #4e4e5a;
+  color: var(--text4);
 }
-.chip.new { border-color: #f5c842; color: #f5c842; background: rgba(245,200,66,0.06); }
-.empty { font-size: 0.75rem; color: #3e3e4a; font-style: italic; }
+.chip.new { border-color: var(--accent); color: var(--accent); background: rgba(245,200,66,0.06); }
+.empty { font-size: 0.75rem; color: var(--text5); font-style: italic; }
 
 /* ── RNG CARD ── */
 .rng-card {
-  background: #161618;
-  border: 1px solid #222228;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
   border-radius: 18px;
   padding: 1.4rem 1.4rem 1rem;
   width: 100%;
@@ -287,7 +326,7 @@ h1 {
 
 .rng-label {
   font-size: 0.6rem;
-  color: #3e3e4a;
+  color: var(--text5);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   margin-bottom: 1rem;
@@ -304,10 +343,10 @@ h1 {
 .rng-input {
   width: 90px;
   flex-shrink: 0;
-  background: #111114;
-  border: 1px solid #252530;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
   border-radius: 10px;
-  color: #f0ede8;
+  color: var(--text);
   font-size: 1rem;
   font-weight: 700;
   padding: 0.5rem 0.8rem;
@@ -315,11 +354,11 @@ h1 {
   -webkit-appearance: none;
   text-align: center;
 }
-.rng-input:focus { border-color: #3e3e5a; }
+.rng-input:focus { border-color: var(--accent); }
 
 .rng-input-label {
   font-size: 0.85rem;
-  color: #6e6e7a;
+  color: var(--text3);
   flex: 1;
   min-width: 0;
 }
@@ -331,12 +370,12 @@ h1 {
   justify-content: space-between;
   width: 100%;
 }
-.toggle-label { font-size: 0.85rem; color: #8e8e98; }
+.toggle-label { font-size: 0.85rem; color: var(--text2); }
 .toggle { position:relative; width:44px; height:26px; }
 .toggle input { opacity:0; width:0; height:0; }
 .toggle-slider {
   position:absolute; inset:0;
-  background:#222228;
+  background:var(--border2);
   border-radius:26px;
   cursor:pointer;
   transition: background 0.2s;
@@ -351,7 +390,7 @@ h1 {
   transition: transform 0.2s;
   box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
-.toggle input:checked + .toggle-slider { background:#2ecc71; }
+.toggle input:checked + .toggle-slider { background:var(--green); }
 .toggle input:checked + .toggle-slider::before { transform: translateX(18px); }
 
 /* ── RNG RESULT ── */
@@ -369,7 +408,7 @@ h1 {
 }
 .rng-sublabel {
   font-size: 0.6rem;
-  color: #3e3e4a;
+  color: var(--text5);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   line-height: 1;
@@ -391,7 +430,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #2ecc71;
+  color: var(--green);
   opacity: 0.12;
   letter-spacing: -0.03em;
   transition: color 0.12s, opacity 0.18s;
@@ -401,8 +440,8 @@ h1 {
   flex-shrink: 0;
   overflow: hidden;
 }
-.rng-num.spinning { color: #f5c842; opacity: 1; }
-.rng-num.result   { color: #2ecc71; opacity: 1; }
+.rng-num.spinning { color: var(--accent); opacity: 1; }
+.rng-num.result   { color: var(--green); opacity: 1; }
 
 .rng-pool-info {
   font-size: 0.75rem;
@@ -413,13 +452,13 @@ h1 {
   margin-bottom: 0;
   overflow: hidden;
 }
-.rng-pool-info span { color: #f5c842; }
+.rng-pool-info span { color: var(--accent); }
 
 /* ── SHARE NOTE ── */
 .share-note {
   margin-top: 2rem;
   font-size: 0.75rem;
-  color: #4e4e5a;
+  color: var(--text4);
   letter-spacing: 0.06em;
   text-align: center;
   line-height: 2;
@@ -433,8 +472,8 @@ h1 {
 
 /* ── TASKS ── */
 .task-card {
-  background: #161618;
-  border: 1px solid #222228;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
   border-radius: 20px;
   padding: 2rem 1.6rem 1.6rem;
   text-align: center;
@@ -448,7 +487,7 @@ h1 {
 .task-text {
   font-size: 1.4rem;
   font-weight: 800;
-  color: #f0ede8;
+  color: var(--text);
   line-height: 1.3;
   letter-spacing: -0.01em;
   margin-bottom: 1.4rem;
@@ -462,15 +501,15 @@ h1 {
 .task-timer {
   font-size: 2.4rem;
   font-weight: 900;
-  color: #2ecc71;
+  color: var(--green);
   line-height: 1;
   transition: color 0.3s;
 }
-.task-timer.urgent { color: #f5c842; }
-.task-timer.done   { color: #3e3e4a; }
+.task-timer.urgent { color: var(--accent); }
+.task-timer.done   { color: var(--text5); }
 .task-timer-label {
   font-size: 0.6rem;
-  color: #3e3e4a;
+  color: var(--text5);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   margin-bottom: 0.6rem;
@@ -478,24 +517,24 @@ h1 {
 .task-timer-bar-bg {
   width: 100%;
   height: 3px;
-  background: #222228;
+  background: var(--border2);
   border-radius: 3px;
   overflow: hidden;
 }
 .task-timer-bar {
   height: 100%;
-  background: #2ecc71;
+  background: var(--green);
   border-radius: 3px;
   width: 100%;
   transition: width 1s linear, background 0.3s;
 }
-.task-timer-bar.urgent { background: #f5c842; }
+.task-timer-bar.urgent { background: var(--accent); }
 
 /* ── TIMER ── */
 .timer-card {
   width: 100%;
-  background: #161618;
-  border: 1px solid #222228;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
   border-radius: 20px;
   padding: 1.8rem 1.6rem;
   display: flex;
@@ -507,13 +546,13 @@ h1 {
 .timer-display {
   font-size: 4rem;
   font-weight: 900;
-  color: #f0ede8;
+  color: var(--text);
   letter-spacing: 0.05em;
   font-variant-numeric: tabular-nums;
   transition: color 0.3s;
 }
-.timer-display.urgent { color: #f5c842; }
-.timer-display.done   { color: #2ecc71; }
+.timer-display.urgent { color: var(--accent); }
+.timer-display.done   { color: var(--green); }
 .timer-presets {
   display: flex;
   gap: 0.5rem;
@@ -521,10 +560,10 @@ h1 {
   justify-content: center;
 }
 .timer-preset {
-  background: #1a1a20;
-  border: 1px solid #252530;
+  background: var(--bg2);
+  border: 1px solid var(--border);
   border-radius: 50px;
-  color: #8e8e98;
+  color: var(--text2);
   font-size: 0.85rem;
   font-weight: 600;
   padding: 0.4rem 0.9rem;
@@ -532,8 +571,8 @@ h1 {
   transition: all 0.15s;
 }
 .timer-preset:active, .timer-preset.on {
-  background: #2ecc71;
-  border-color: #2ecc71;
+  background: var(--green);
+  border-color: var(--green);
   color: #111114;
 }
 .timer-custom-wrap {
@@ -552,16 +591,16 @@ h1 {
 .score-mode-tabs {
   display: flex;
   gap: 0.25rem;
-  background: #1a1a20;
+  background: var(--bg2);
   padding: 0.25rem;
   border-radius: 12px;
-  border: 1px solid #252530;
+  border: 1px solid var(--border);
   width: 100%;
   margin-bottom: 1rem;
 }
 .score-total {
   font-size: 0.6rem;
-  color: #6e6e7a;
+  color: var(--text3);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -574,10 +613,10 @@ h1 {
 .score-input-row input {
   flex: 1;
   min-width: 0;
-  background: #111114;
-  border: 1px solid #252530;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
   border-radius: 8px;
-  color: #f0ede8;
+  color: var(--text);
   font-size: 1rem;
   font-weight: 700;
   padding: 0.4rem 0.3rem;
@@ -599,7 +638,7 @@ h1 {
 }
 .score-undo {
   font-size: 0.75rem;
-  color: #3e3e4a;
+  color: var(--text5);
   cursor: pointer;
   text-decoration: underline;
   -webkit-tap-highlight-color: transparent;
@@ -627,10 +666,10 @@ h1 {
   min-width: 0;
   width: 100%;
   border-left: 4px solid var(--player-color, #f5c842);
-  background: #161618;
-  border-top: 1px solid #222228;
-  border-right: 1px solid #222228;
-  border-bottom: 1px solid #222228;
+  background: var(--bg3);
+  border-top: 1px solid var(--border2);
+  border-right: 1px solid var(--border2);
+  border-bottom: 1px solid var(--border2);
 }
 .score-name {
   font-size: 0.85rem;
@@ -669,10 +708,10 @@ h1 {
 }
 .score-reset-one {
   font-size: 0.6rem;
-  color: #3e3e4a;
+  color: var(--text5);
   cursor: pointer;
   padding: 0.25rem 0.55rem;
-  border: 1px solid #2a2a35;
+  border: 1px solid var(--border);
   border-radius: 20px;
   background: transparent;
   -webkit-tap-highlight-color: transparent;
@@ -693,8 +732,8 @@ h1 {
   height: 44px;
   border-radius: 50%;
   border: 1px solid #252530;
-  background: #1a1a20;
-  color: #f0ede8;
+  background: var(--bg2);
+  color: var(--text);
   font-size: 1.3rem;
   font-weight: 700;
   cursor: pointer;
@@ -705,14 +744,14 @@ h1 {
   -webkit-tap-highlight-color: transparent;
   flex-shrink: 0;
 }
-.score-btn.plus:active  { background: #2ecc71; border-color: #2ecc71; color: #111; }
+.score-btn.plus:active  { background: var(--green); border-color: var(--green); color: #111; }
 .score-btn.minus:active { background: #e74c3c; border-color: #e74c3c; color: #fff; }
 
 /* ── GAME OF DAY ── */
 .game-card {
   width: 100%;
-  background: #161618;
-  border: 1px solid #222228;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
   border-radius: 20px;
   padding: 1.8rem 1.6rem 1.6rem;
   margin-bottom: 1.4rem;
@@ -723,27 +762,27 @@ h1 {
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #f5c842;
+  color: var(--accent);
   opacity: 0.7;
   margin-bottom: 0.8rem;
 }
 .game-title {
   font-size: 1.9rem;
   font-weight: 900;
-  color: #f0ede8;
+  color: var(--text);
   letter-spacing: -0.01em;
   line-height: 1.1;
   margin-bottom: 1rem;
 }
 .game-desc {
   font-size: 0.85rem;
-  color: #8e8e98;
+  color: var(--text2);
   line-height: 1.6;
   margin-bottom: 1rem;
 }
 .game-players {
   font-size: 0.6rem;
-  color: #3e3e4a;
+  color: var(--text5);
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -774,21 +813,50 @@ h1 {
 .game-tomorrow {
   text-align: center;
   padding: 1.2rem 1rem;
-  background: #161618;
-  border: 1px solid #222228;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
   border-radius: 16px;
   margin-bottom: 0;
   width: 100%;
 }
 .game-tomorrow-text {
   font-size: 0.85rem;
-  color: #f0ede8;
+  color: var(--text);
   margin-bottom: 0.8rem;
 }
 .game-tomorrow-or {
   display: none;
 }
 
+/* ── LIGHT THEME ── */
+body.light {
+  background-image:
+    radial-gradient(ellipse at 20% 0%,  rgba(245,200,66,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 95%, rgba(46,204,113,0.04) 0%, transparent 55%);
+}
+body.light h1 { color: #111114; text-shadow: none; font-weight: 800; letter-spacing: -0.03em; }
+body.light .sub { color: #111114; opacity: 1; font-size: 0.85rem; letter-spacing: 0.08em; }
+body.light .die-face { background: #ffffff; border-color: #b0b0a8; border-width: 2px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+body.light .pip { background: #333336; }
+body.light .die-face.lit { border-color: var(--green); }
+body.light .die-face.lit .pip { background: var(--green); }
+body.light .die-face.rolling-tint { background: #fffbe0; border-color: #c8a000; }
+body.light .die-face.rolling-tint .pip { background: #c8a000; }
+body.light .chip.new { background: rgba(176,136,0,0.12); }
+body.light .mtab { color: #333336; font-weight: 600; }
+body.light .sel { color: #333336; font-weight: 600; }
+body.light .rng-label { color: #555550; }
+body.light .rng-sublabel { color: #666660; }
+body.light .hist-head { color: #444440; }
+body.light .res-label { color: #666660; }
+body.light .res-label.show { color: #222224; }
+body.light .share-note { color: #333336; }
+body.light .score-undo { color: #888882; }
+body.light .score-reset-one { color: #888882; }
+body.light .toggle input:checked + .toggle-slider { background: #f5c842; }
+body.light .toggle-slider { background: #c0c0b8; }
+body.light .game-badge { color: #888882; }
+body.light .game-players { color: #888882; }
 
 </style>
 </head>
@@ -798,10 +866,10 @@ h1 {
 <p class="sub">Усі необхідні інструменти для ігор</p>
 
 <div style="display:flex;flex-direction:column;align-items:center;gap:0.3rem;margin-top:0.4rem;margin-bottom:1.4rem;">
-  <span style="font-size:0.85rem;color:#f0ede8;letter-spacing:0.04em;font-weight:500;">Створено для тих, хто грає з дітьми</span>
-  <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:#6e6e7a;letter-spacing:0.06em;">
-    <span style="color:#f0ede8;font-size:0.75rem;">Автор</span>
-    <a href="https://www.instagram.com/vitalii.golounin/" target="_blank" style="display:inline-flex;align-items:center;gap:0.35rem;color:#f0ede8;text-decoration:none;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:50px;padding:0.25rem 0.75rem;font-weight:600;font-size:0.75rem;">Віталій Голоунін
+  <span style="font-size:0.85rem;color:var(--text);letter-spacing:0.04em;font-weight:500;">Створено для тих, хто грає з дітьми</span>
+  <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--text3);letter-spacing:0.06em;">
+    <span style="color:var(--text);font-size:0.85rem;">Автор</span>
+    <a href="https://www.instagram.com/vitalii.golounin/" target="_blank" style="display:inline-flex;align-items:center;gap:0.35rem;color:var(--text);text-decoration:none;background:rgba(128,128,128,0.1);border:1px solid rgba(128,128,128,0.2);border-radius:50px;padding:0.25rem 0.75rem;font-weight:600;font-size:0.75rem;">Віталій Голоунін
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
     </a>
   </div>
@@ -845,7 +913,7 @@ h1 {
 <div class="page" id="page-rng">
 
   <!-- Sub-tabs -->
-  <div style="display:flex;flex-direction:column;gap:0.4rem;width:100%;margin-bottom:1.4rem;">
+  <div style="display:flex;flex-direction:column;gap:0.6rem;width:100%;margin-bottom:0.6rem;">
     <div class="selector" style="margin-bottom:0;width:100%;">
       <button class="sel on" data-mode="nums"    onclick="setRngMode('nums')"    style="flex:1;text-align:center;">🔢 Числа</button>
       <button class="sel"    data-mode="words"   onclick="setRngMode('words')"   style="flex:1;text-align:center;">🔤 Слова</button>
@@ -888,9 +956,9 @@ h1 {
   <!-- WORDS panel -->
   <div id="rng-words-panel" style="display:none;width:100%;margin-bottom:0.3rem;">
     <div class="rng-card">
-      <div style="font-size:0.85rem;color:#f0ede8;line-height:1.5;margin-bottom:0.8rem;">Щоб обрати хто перший ходить, визначитись з десертом чи заняттям — використовуйте генератор випадкових варіантів з написаних вами слів</div>
+      <div style="font-size:0.85rem;color:var(--text);line-height:1.5;margin-bottom:0.8rem;">Щоб обрати хто перший ходить, визначитись з десертом чи заняттям — використовуйте генератор випадкових варіантів з написаних вами слів</div>
       <div class="rng-label">Введіть слова через кому</div>
-      <textarea id="wordsInput" placeholder="кіт, собака, папуга, черепаха…" style="width:100%;min-height:80px;background:#111114;border:1px solid #2c2c36;border-radius:8px;color:#f0ede8;font-size:0.85rem;padding:0.6rem 0.8rem;outline:none;resize:vertical;font-family:inherit;margin-top:0.4rem;line-height:1.5;"></textarea>
+      <textarea id="wordsInput" placeholder="кіт, собака, папуга, черепаха…" style="width:100%;min-height:80px;background:var(--input-bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:0.85rem;padding:0.6rem 0.8rem;outline:none;resize:vertical;font-family:inherit;margin-top:0.4rem;line-height:1.5;"></textarea>
       <div class="rng-row" style="margin-top:0.8rem;margin-bottom:0;">
         <div class="rng-input-label">Кількість слів</div>
         <input class="rng-input" type="number" id="wordsCount" value="1" min="1">
@@ -909,7 +977,7 @@ h1 {
   <!-- LETTERS panel -->
   <div id="rng-letters-panel" style="display:none;width:100%;margin-bottom:0.3rem;">
     <div class="rng-card">
-      <div style="font-size:0.85rem;color:#f0ede8;line-height:1.5;margin-bottom:0.8rem;">Для деяких ігор типу "Трилітрова банка" потрібно обрати літеру. У цьому допоможе генератор літери.</div>
+      <div style="font-size:0.85rem;color:var(--text);line-height:1.5;margin-bottom:0.8rem;">Для деяких ігор типу "Трилітрова банка" потрібно обрати літеру. У цьому допоможе генератор літери.</div>
       <div class="rng-label">Українська абетка</div>
       <div class="rng-row">
         <div class="rng-input-label">Кількість літер</div>
@@ -937,7 +1005,7 @@ h1 {
 
     <div id="fun-tasks-wrap" style="width:100%;">
       <div class="rng-card" style="margin-bottom:0.8rem;">
-        <div style="font-size:0.85rem;color:#f0ede8;line-height:1.5;margin-bottom:0.8rem;">Швидкі завдання — це картки з веселими завданнями для однієї або декількох людей. Веселий спосіб швидко розважитись чи використовувати як додаток до ваших ігор. Натисніть кнопку, отримайте завдання і виконуйте поки йде час!</div>
+        <div style="font-size:0.85rem;color:var(--text);line-height:1.5;margin-bottom:0.8rem;">Швидкі завдання — це картки з веселими завданнями для однієї або декількох людей. Веселий спосіб швидко розважитись чи використовувати як додаток до ваших ігор. Натисніть кнопку, отримайте завдання і виконуйте поки йде час!</div>
         <div class="rng-label">Оберіть тип завдань</div>
         <div class="selector" style="margin-bottom:0;border:none;background:transparent;padding:0;justify-content:center;">
           <button class="sel on" id="task-for-1" onclick="setTaskFor(1)" style="flex:1;text-align:center;">👤 Персональні</button>
@@ -959,7 +1027,7 @@ h1 {
 
     <div id="fun-croco-wrap" style="display:none;width:100%;">
       <div class="rng-card" style="margin-bottom:0.8rem;">
-        <div style="font-size:0.85rem;color:#f0ede8;line-height:1.5;margin-bottom:0.8rem;">Крокодил — відома гра де потрібно мовчки показувати загадане слово жестами і мімікою, без звуків. Хто відгадає — показує наступним. Оберіть категорію нижче і починайте гру!</div>
+        <div style="font-size:0.85rem;color:var(--text);line-height:1.5;margin-bottom:0.8rem;">Крокодил — відома гра де потрібно мовчки показувати загадане слово жестами і мімікою, без звуків. Хто відгадає — показує наступним. Оберіть категорію нижче і починайте гру!</div>
         <div class="rng-label">Оберіть категорію слів</div>
         <div class="selector" style="margin-bottom:0;border:none;background:transparent;padding:0;justify-content:center;">
           <button class="sel on" id="croco-level-kids" onclick="setCrocoLevel('kids')" style="flex:1;text-align:center;">🧒 Дитячі</button>
@@ -967,7 +1035,7 @@ h1 {
         </div>
       </div>
       <div id="croco-result" style="display:none;width:100%;text-align:center;padding:0.8rem 0 0;">
-        <div style="font-size:0.6rem;color:#3e3e4a;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.4rem;">покажи без слів</div>
+        <div style="font-size:0.6rem;color:var(--text5);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.4rem;">покажи без слів</div>
         <div id="croco-word" style="font-size:2.6rem;font-weight:900;color:#2ecc71;line-height:1.2;"></div>
       </div>
     </div>
@@ -988,7 +1056,7 @@ h1 {
       </div>
       <div class="timer-btns" style="display:flex;gap:0.7rem;align-items:stretch;width:100%;">
         <button class="btn-main" id="timerStartBtn" onclick="timerToggle()" style="flex:1;margin-bottom:0;min-width:0;overflow:hidden;white-space:nowrap;padding-left:0.5rem;padding-right:0.5rem;font-size:0.85rem;">▶ Старт</button>
-        <button onclick="timerReset()" style="padding:0.9rem 1.2rem;background:#1a1a20;border:1px solid #252530;border-radius:50px;color:#f0ede8;font-size:0.85rem;font-weight:700;cursor:pointer;letter-spacing:0.05em;-webkit-tap-highlight-color:transparent;white-space:nowrap;">Скасувати</button>
+        <button onclick="timerReset()" style="padding:0.9rem 1.2rem;background:var(--bg2);border:1px solid var(--border);border-radius:50px;color:var(--text);font-size:0.85rem;font-weight:700;cursor:pointer;letter-spacing:0.05em;-webkit-tap-highlight-color:transparent;white-space:nowrap;">Скасувати</button>
       </div>
     </div>
   </div>
@@ -1016,7 +1084,7 @@ h1 {
     </div>
     <div class="score-grid" id="scoreGrid"></div>
     <div style="text-align:center;margin-top:0.3rem;">
-      <button class="btn-clear" onclick="scoreReset()" style="font-size:0.75rem;color:#f0ede8;padding:0.4rem 1rem;border-color:#3e3e4a;">скинути рахунок</button>
+      <button class="btn-clear" onclick="scoreReset()" style="font-size:0.75rem;color:var(--text);padding:0.4rem 1rem;border-color:var(--text5);">скинути рахунок</button>
     </div>
   </div>
 
@@ -1066,63 +1134,72 @@ h1 {
 </div>
 
 <!-- ═══ SHARED BOTTOM ═══ -->
-<div id="shared-bottom" style="width:100%;max-width:400px;display:flex;flex-direction:column;align-items:center;gap:0.8rem;margin-top:0;padding-top:1.4rem;border-top:1px solid #1e1e28;">
+<div id="shared-bottom" style="width:100%;max-width:400px;display:flex;flex-direction:column;align-items:center;gap:0.8rem;margin-top:0;padding-top:1.4rem;border-top:1px solid var(--border);">
 
   <div class="share-note">
-    <div>Збережіть цю сторінку на початковий екран. Працює навіть офлайн.</div>
+    <div>Збережіть цю сторінку на початковий екран.<br>Працює навіть офлайн.</div>
     <details style="display:inline;cursor:pointer;">
-      <summary style="display:inline;list-style:none;outline:none;color:#f5c842;opacity:0.9;text-decoration:underline;text-underline-offset:3px;">📲 Інструкція з встановлення</summary>
-      <div style="margin-top:0.8rem;background:#1a1a20;border:1px solid #222228;border-radius:12px;padding:1rem;font-size:0.75rem;line-height:2;color:#9e9ea8;text-align:left;">
+      <summary style="display:inline;list-style:none;outline:none;color:var(--accent);opacity:0.9;text-decoration:underline;text-underline-offset:3px;">📲 Інструкція з встановлення</summary>
+      <div style="margin-top:0.8rem;background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:1rem;font-size:0.75rem;line-height:2;color:var(--text2);text-align:left;">
 
-        <div style="margin-bottom:0.6rem;color:#f5c842;font-weight:700;letter-spacing:0.1em;">🍎 iPhone / iPad</div>
-        <div>1. Відкрий посилання в <b style="color:#f0ede8;">Safari</b></div>
+        <div style="margin-bottom:0.6rem;color:var(--accent);font-weight:700;letter-spacing:0.1em;">🍎 iPhone / iPad</div>
+        <div>1. Відкрий посилання в <b style="color:var(--text);">Safari</b></div>
         <div style="display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;">
           <span>2. Натисни</span>
-          <span style="display:inline-flex;align-items:center;justify-content:center;gap:0.3rem;background:#1e1e28;border:1px solid #3e3e4a;border-radius:6px;padding:2px 8px;">
+          <span style="display:inline-flex;align-items:center;justify-content:center;gap:0.3rem;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:2px 8px;">
             <svg width="14" height="16" viewBox="0 0 14 16" fill="none" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="7,1 7,10"/>
               <polyline points="4,4 7,1 10,4"/>
               <path d="M2,6 L2,14 L12,14 L12,6"/>
             </svg>
-            <span style="color:#f0ede8;font-size:0.75rem;">Поширити</span>
+            <span style="color:var(--text);font-size:0.75rem;">Поширити</span>
           </span>
           <span>внизу екрану</span>
         </div>
         <div style="display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;">
           <span>3. Прокрути список і натисни</span>
-          <span style="display:inline-flex;align-items:center;justify-content:center;background:#1e1e28;border:1px solid #3e3e4a;border-radius:6px;padding:2px 10px;color:#f0ede8;font-weight:700;letter-spacing:0.5em;font-size:0.85rem;padding-right:6px;">•••</span>
+          <span style="display:inline-flex;align-items:center;justify-content:center;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:2px 10px;color:var(--text);font-weight:700;letter-spacing:0.5em;font-size:0.85rem;padding-right:6px;">•••</span>
         </div>
         <div style="display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;">
           <span>4. Обери</span>
-          <span style="display:inline-flex;align-items:center;gap:0.3rem;background:#1e1e28;border:1px solid #3e3e4a;border-radius:6px;padding:2px 8px;color:#f0ede8;font-size:0.75rem;">
+          <span style="display:inline-flex;align-items:center;gap:0.3rem;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:2px 8px;color:var(--text);font-size:0.75rem;">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/></svg>
             На початковий екран
           </span>
         </div>
-        <div>5. Натисни <b style="color:#f0ede8;">Додати</b></div>
+        <div>5. Натисни <b style="color:var(--text);">Додати</b></div>
 
-        <div style="margin-top:1rem;margin-bottom:0.6rem;color:#f5c842;font-weight:700;letter-spacing:0.1em;">🤖 Android</div>
-        <div>1. Відкрий посилання в <b style="color:#f0ede8;">Chrome</b></div>
+        <div style="margin-top:1rem;margin-bottom:0.6rem;color:var(--accent);font-weight:700;letter-spacing:0.1em;">🤖 Android</div>
+        <div>1. Відкрий посилання в <b style="color:var(--text);">Chrome</b></div>
         <div style="display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;">
           <span>2. Натисни</span>
-          <span style="display:inline-flex;align-items:center;justify-content:center;background:#1e1e28;border:1px solid #3e3e4a;border-radius:6px;padding:2px 8px;color:#f0ede8;font-weight:900;letter-spacing:0.05em;">⋮</span>
+          <span style="display:inline-flex;align-items:center;justify-content:center;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:2px 8px;color:var(--text);font-weight:900;letter-spacing:0.05em;">⋮</span>
           <span>вгорі праворуч</span>
         </div>
         <div style="display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;">
           <span>3. Обери</span>
-          <span style="display:inline-flex;align-items:center;gap:0.3rem;background:#1e1e28;border:1px solid #3e3e4a;border-radius:6px;padding:2px 8px;color:#f0ede8;font-size:0.75rem;">
+          <span style="display:inline-flex;align-items:center;gap:0.3rem;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:2px 8px;color:var(--text);font-size:0.75rem;">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="2" x2="6" y2="10"/><line x1="2" y1="6" x2="10" y2="6"/></svg>
             Додати на головний екран
           </span>
         </div>
-        <div>4. Натисни <b style="color:#f0ede8;">Додати</b></div>
+        <div>4. Натисни <b style="color:var(--text);">Додати</b></div>
 
       </div>
     </details>
   </div>
 
-  <p style="font-size:0.75rem;color:#6e6e7a;letter-spacing:0.06em;text-align:center;">Ігри на всі випадки життя тут 👇</p>
-  <a href="https://tatusigry.wayforpay.link/" target="_blank" style="font-size:0.85rem;font-weight:700;color:#f5c842;letter-spacing:0.06em;text-decoration:none;border:1px solid rgba(245,200,66,0.35);border-radius:50px;padding:0.5rem 1.4rem;background:rgba(245,200,66,0.07);">🎲 101 гра з дітьми</a>
+  <p style="font-size:0.75rem;color:var(--text3);letter-spacing:0.06em;text-align:center;">Ігри на всі випадки життя тут 👇</p>
+  <a href="https://tatusigry.wayforpay.link/" target="_blank" style="font-size:0.85rem;font-weight:600;color:var(--text4);letter-spacing:0.06em;text-decoration:none;border:1px solid var(--border);border-radius:50px;padding:0.5rem 1.4rem;background:var(--bg2);">🎲 101 гра з дітьми</a>
+
+  <div style="display:flex;align-items:center;gap:0.7rem;margin-top:0.8rem;opacity:0.6;">
+    <span style="font-size:0.75rem;color:inherit;">🌙</span>
+    <label class="toggle">
+      <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
+      <div class="toggle-slider"></div>
+    </label>
+    <span style="font-size:0.75rem;color:inherit;">☀️</span>
+  </div>
 
 </div>
 
@@ -1981,7 +2058,7 @@ function renderScoreGrid() {
           '<div style="display:flex;gap:0.4rem;align-items:stretch;">'+
             '<input type="number" id="score-input-'+i+'" placeholder="0" onclick="this.select()" '+
               'onkeydown="if(event.key===\'Enter\')scoreAddSum('+i+')" '+
-              'style="width:90px;height:60px;background:#111114;border:1px solid #252530;border-radius:10px;color:#f0ede8;font-size:2rem;font-weight:900;padding:0;outline:none;text-align:center;-webkit-appearance:none;box-sizing:border-box;">'+
+              'style="width:90px;height:60px;background:var(--input-bg);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:2rem;font-weight:900;padding:0;outline:none;text-align:center;-webkit-appearance:none;box-sizing:border-box;">'+
             '<button onclick="scoreAddSum('+i+')" style="width:60px;height:60px;border-radius:50%;border:none;background:var(--player-color);color:#111;font-size:1.8rem;font-weight:900;cursor:pointer;flex-shrink:0;-webkit-tap-highlight-color:transparent;">✓</button>'+
           '</div>'+
         '</div>'+
@@ -2400,11 +2477,29 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+// THEME
+function toggleTheme() {
+  var isLight = document.body.classList.toggle('light');
+  document.getElementById('themeToggle').checked = isLight;
+  try { localStorage.setItem('tatusigry_theme', isLight ? 'light' : 'dark'); } catch(e) {}
+}
+
+function initTheme() {
+  try {
+    var saved = localStorage.getItem('tatusigry_theme');
+    if(saved === 'light') {
+      document.body.classList.add('light');
+      document.getElementById('themeToggle').checked = true;
+    }
+  } catch(e) {}
+}
+
 // INIT
 buildDice();
 updatePoolInfo();
 setRngMode('nums');
 if(!scoreLoad()) setScorePlayers(2);
+initTheme();
 
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('sw.js').catch(function(){});
