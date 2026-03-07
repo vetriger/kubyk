@@ -9,6 +9,7 @@
 <meta property="og:description" content="Всі необхідні інструменти для ігор з дітьми. Працює офлайн.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tatusigry.github.io/kubyk/">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#111114">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -2498,6 +2499,21 @@ function initTheme() {
       document.getElementById('themeToggle').checked = true;
     }
   } catch(e) {}
+}
+
+// TELEGRAM MINI APP
+if (window.Telegram && window.Telegram.WebApp) {
+  var tg = window.Telegram.WebApp;
+  tg.ready();
+  tg.expand();
+  // Адаптуємо кольори під тему Telegram
+  var colorScheme = tg.colorScheme;
+  if (colorScheme === 'light') {
+    document.body.classList.add('light');
+    try { localStorage.setItem('tatusigry_theme', 'light'); } catch(e) {}
+    var toggle = document.getElementById('themeToggle');
+    if (toggle) toggle.checked = true;
+  }
 }
 
 // INIT
