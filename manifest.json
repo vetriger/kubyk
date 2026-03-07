@@ -1,6 +1,6 @@
 {
-  "name": "Татусігри",
-  "short_name": "Татусігри",
+  "name": "Кубик/Генератор",
+  "short_name": "Кубик/Генератор",
   "description": "Усі необхідні інструменти для ігор з дітьми",
   "start_url": "./index.html",
   "display": "standalone",
