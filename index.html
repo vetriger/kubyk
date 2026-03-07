@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Кубик/Генератор</title>
+<meta name="description" content="Кубик, генератор чисел і слів, таймер, табло, крокодил — всі інструменти для ігор з дітьми в одному місці. Працює офлайн.">
+<meta property="og:title" content="Татусігри — Кубик/Генератор">
+<meta property="og:description" content="Всі необхідні інструменти для ігор з дітьми. Працює офлайн.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tatusigry.github.io/kubyk/">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#111114">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -853,7 +858,8 @@ body.light .res-label.show { color: #222224; }
 body.light .share-note { color: #333336; }
 body.light .score-undo { color: #888882; }
 body.light .score-reset-one { color: #888882; }
-body.light .toggle input:checked + .toggle-slider { background: #f5c842; }
+body.light .btn-101 { color: var(--text4) !important; border-color: var(--border) !important; background: var(--bg2) !important; }
+body.light .toggle input:checked + .toggle-slider { background: var(--green); }
 body.light .toggle-slider { background: #c0c0b8; }
 body.light .game-badge { color: #888882; }
 body.light .game-players { color: #888882; }
@@ -869,7 +875,7 @@ body.light .game-players { color: #888882; }
   <span style="font-size:0.85rem;color:var(--text);letter-spacing:0.04em;font-weight:500;">Створено для тих, хто грає з дітьми</span>
   <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--text3);letter-spacing:0.06em;">
     <span style="color:var(--text);font-size:0.85rem;">Автор</span>
-    <a href="https://www.instagram.com/vitalii.golounin/" target="_blank" style="display:inline-flex;align-items:center;gap:0.35rem;color:var(--text);text-decoration:none;background:rgba(128,128,128,0.1);border:1px solid rgba(128,128,128,0.2);border-radius:50px;padding:0.25rem 0.75rem;font-weight:600;font-size:0.75rem;">Віталій Голоунін
+    <a href="https://www.instagram.com/vitalii.golounin/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.35rem;color:var(--text);text-decoration:none;background:rgba(128,128,128,0.1);border:1px solid rgba(128,128,128,0.2);border-radius:50px;padding:0.25rem 0.75rem;font-weight:600;font-size:0.75rem;">Віталій Голоунін
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
     </a>
   </div>
@@ -1045,6 +1051,7 @@ body.light .game-players { color: #888882; }
     <div class="timer-card">
       <div class="timer-display" id="timerDisplay">00:00</div>
       <div class="timer-presets">
+        <button class="timer-preset" onclick="timerPreset(0.5)">30 с</button>
         <button class="timer-preset" onclick="timerPreset(1)">1 хв</button>
         <button class="timer-preset" onclick="timerPreset(2)">2 хв</button>
         <button class="timer-preset" onclick="timerPreset(5)">5 хв</button>
@@ -1128,7 +1135,7 @@ body.light .game-players { color: #888882; }
   <div class="game-tomorrow" id="gameTomorrow" style="display:none;">
     <div class="game-tomorrow-text">Приходь завтра за новою грою або</div>
     <div class="game-tomorrow-or"></div>
-    <a href="https://tatusigry.wayforpay.link/" target="_blank" style="display:inline-block;font-size:0.95rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;padding:0.9rem 2rem;background:#f5c842;color:#111114;border:none;border-radius:50px;text-decoration:none;box-shadow:0 4px 24px rgba(245,200,66,0.25);">🎲 Отримай збірку «101 гра з дітьми» зараз</a>
+    <a href="https://tatusigry.wayforpay.link/" target="_blank" rel="noopener noreferrer" style="display:inline-block;font-size:0.95rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;padding:0.9rem 2rem;background:#f5c842;color:#111114;border:none;border-radius:50px;text-decoration:none;box-shadow:0 4px 24px rgba(245,200,66,0.25);">🎲 Отримай збірку «101 гра з дітьми» зараз</a>
   </div>
 
 </div>
@@ -1190,7 +1197,7 @@ body.light .game-players { color: #888882; }
   </div>
 
   <p style="font-size:0.75rem;color:var(--text3);letter-spacing:0.06em;text-align:center;">Ігри на всі випадки життя тут 👇</p>
-  <a href="https://tatusigry.wayforpay.link/" target="_blank" style="font-size:0.85rem;font-weight:600;color:var(--text4);letter-spacing:0.06em;text-decoration:none;border:1px solid var(--border);border-radius:50px;padding:0.5rem 1.4rem;background:var(--bg2);">🎲 101 гра з дітьми</a>
+  <a href="https://tatusigry.wayforpay.link/" target="_blank" rel="noopener noreferrer" class="btn-101" style="font-size:0.85rem;font-weight:600;color:var(--accent);letter-spacing:0.06em;text-decoration:none;border:1px solid rgba(245,200,66,0.35);border-radius:50px;padding:0.5rem 1.4rem;background:rgba(245,200,66,0.08);">🎲 101 гра з дітьми</a>
 
   <div style="display:flex;align-items:center;gap:0.7rem;margin-top:0.8rem;opacity:0.6;">
     <span style="font-size:0.75rem;color:inherit;">🌙</span>
