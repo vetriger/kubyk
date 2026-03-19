@@ -1077,16 +1077,16 @@ body.light .game-players { color: #888882; }
     </div>
     <div class="score-setup" id="scoreSetup">
       <div class="rng-label">Кількість гравців</div>
-      <div class="selector" style="margin-bottom:1rem;border:none;background:transparent;padding:0;">
-        <button class="sel on" onclick="setScorePlayers(2)">2</button>
-        <button class="sel"    onclick="setScorePlayers(3)">3</button>
-        <button class="sel"    onclick="setScorePlayers(4)">4</button>
-        <button class="sel"    onclick="setScorePlayers(5)">5</button>
-        <button class="sel"    onclick="setScorePlayers(6)">6</button>
-        <button class="sel"    onclick="setScorePlayers(7)">7</button>
-        <button class="sel"    onclick="setScorePlayers(8)">8</button>
-        <button class="sel"    onclick="setScorePlayers(9)">9</button>
-        <button class="sel"    onclick="setScorePlayers(10)">10</button>
+      <div class="selector" style="margin-bottom:1rem;border:none;background:transparent;padding:0;gap:0.25rem;justify-content:space-between;">
+        <button class="sel on" onclick="setScorePlayers(2)"  style="padding:0.35rem 0.55rem;min-width:0;">2</button>
+        <button class="sel"    onclick="setScorePlayers(3)"  style="padding:0.35rem 0.55rem;min-width:0;">3</button>
+        <button class="sel"    onclick="setScorePlayers(4)"  style="padding:0.35rem 0.55rem;min-width:0;">4</button>
+        <button class="sel"    onclick="setScorePlayers(5)"  style="padding:0.35rem 0.55rem;min-width:0;">5</button>
+        <button class="sel"    onclick="setScorePlayers(6)"  style="padding:0.35rem 0.55rem;min-width:0;">6</button>
+        <button class="sel"    onclick="setScorePlayers(7)"  style="padding:0.35rem 0.55rem;min-width:0;">7</button>
+        <button class="sel"    onclick="setScorePlayers(8)"  style="padding:0.35rem 0.55rem;min-width:0;">8</button>
+        <button class="sel"    onclick="setScorePlayers(9)"  style="padding:0.35rem 0.55rem;min-width:0;">9</button>
+        <button class="sel"    onclick="setScorePlayers(10)" style="padding:0.35rem 0.55rem;min-width:0;">10</button>
       </div>
     </div>
     <div class="score-grid" id="scoreGrid"></div>
@@ -1995,6 +1995,7 @@ var scorePlayersSum = 2;
 var scoreDataCounter = [];
 var scoreDataSum = [];
 var scoreData = [];
+var scoreDataByCount = { counter: {}, sum: {} };
 var scoreMode = 'counter';
 
 function setScoreMode(mode) {
@@ -2021,15 +2022,33 @@ function setScoreMode(mode) {
 }
 
 function setScorePlayers(n) {
-  if(scoreMode === 'counter') scorePlayersCounter = n;
-  else scorePlayersSum = n;
+  // Зберігаємо поточний стан перед переключенням
+  if(scoreMode === 'counter') {
+    scoreDataByCount.counter[scorePlayersCounter] = scoreData;
+    scorePlayersCounter = n;
+    if(scoreDataByCount.counter[n] && scoreDataByCount.counter[n].length === n) {
+      scoreData = scoreDataByCount.counter[n];
+    } else {
+      scoreData = [];
+      for(var i=0;i<n;i++) scoreData.push({name:'Гравець чи команда '+(i+1), score:0, history:[]});
+      scoreDataByCount.counter[n] = scoreData;
+    }
+    scoreDataCounter = scoreData;
+  } else {
+    scoreDataByCount.sum[scorePlayersSum] = scoreData;
+    scorePlayersSum = n;
+    if(scoreDataByCount.sum[n] && scoreDataByCount.sum[n].length === n) {
+      scoreData = scoreDataByCount.sum[n];
+    } else {
+      scoreData = [];
+      for(var i=0;i<n;i++) scoreData.push({name:'Гравець '+(i+1), score:0, history:[]});
+      scoreDataByCount.sum[n] = scoreData;
+    }
+    scoreDataSum = scoreData;
+  }
   document.querySelectorAll('#scoreSetup .sel').forEach(function(b){
     b.className = 'sel' + (parseInt(b.textContent) === n ? ' on' : '');
   });
-  scoreData = [];
-  for(var i=0;i<n;i++){
-    scoreData.push({name: (scoreMode==='sum' ? 'Гравець '+(i+1) : 'Гравець чи команда '+(i+1)), score: 0, history: []});
-  }
   scoreSave();
   renderScoreGrid();
 }
@@ -2127,12 +2146,16 @@ function scoreReset() {
 
 function scoreSave() {
   try {
+    // Зберігаємо поточний стан у scoreDataByCount перед збереженням
+    if(scoreMode === 'counter') scoreDataByCount.counter[scorePlayersCounter] = scoreData;
+    else scoreDataByCount.sum[scorePlayersSum] = scoreData;
     localStorage.setItem('tatusigry_score', JSON.stringify({
       mode: scoreMode,
       playersCounter: scorePlayersCounter,
       playersSum: scorePlayersSum,
       counter: scoreMode === 'counter' ? scoreData : scoreDataCounter,
-      sum: scoreMode === 'sum' ? scoreData : scoreDataSum
+      sum: scoreMode === 'sum' ? scoreData : scoreDataSum,
+      byCount: scoreDataByCount
     }));
   } catch(e) {}
 }
@@ -2146,6 +2169,10 @@ function scoreLoad() {
     scorePlayersSum = d.playersSum || 2;
     scoreDataCounter = d.counter || [];
     scoreDataSum = d.sum || [];
+    scoreDataByCount = d.byCount || { counter: {}, sum: {} };
+    // Відновлюємо збережені дані по всіх вкладках
+    if(scoreDataByCount.counter[scorePlayersCounter]) scoreDataCounter = scoreDataByCount.counter[scorePlayersCounter];
+    if(scoreDataByCount.sum[scorePlayersSum]) scoreDataSum = scoreDataByCount.sum[scorePlayersSum];
     scoreMode = d.mode || 'counter';
     scoreData = scoreMode === 'counter' ? scoreDataCounter : scoreDataSum;
     document.getElementById('scoreMode-counter').className = 'sel' + (scoreMode==='counter' ? ' on' : '');
