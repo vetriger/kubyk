@@ -2593,14 +2593,18 @@ if (window.Telegram && window.Telegram.WebApp) {
   var tg = window.Telegram.WebApp;
   tg.ready();
   tg.expand();
-  // Адаптуємо кольори під тему Telegram
-  var colorScheme = tg.colorScheme;
-  if (colorScheme === 'light') {
-    document.body.classList.add('light');
-    try { localStorage.setItem('tatusigry_theme', 'light'); } catch(e) {}
-    var toggle = document.getElementById('themeToggle');
-    if (toggle) toggle.checked = true;
-  }
+  // Адаптуємо тільки якщо користувач ще не зберіг свою перевагу
+  try {
+    var savedTheme = localStorage.getItem('tatusigry_theme');
+    if (!savedTheme) {
+      var colorScheme = tg.colorScheme;
+      if (colorScheme === 'light') {
+        document.body.classList.add('light');
+        var toggle = document.getElementById('themeToggle');
+        if (toggle) toggle.checked = true;
+      }
+    }
+  } catch(e) {}
 }
 
 // INIT

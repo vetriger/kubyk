@@ -1,4 +1,4 @@
-const CACHE = 'tatusigry-v2';
+const CACHE = 'tatusigry-v3';
 const FILES = [
   './',
   './index.html'
