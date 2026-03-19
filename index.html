@@ -1636,6 +1636,7 @@ function sleep(ms){ return new Promise(function(r){setTimeout(r,ms);}); }
 async function rollAll() {
   if(rolling) return;
   rolling = true;
+  playDiceRoll(N);
   var ticks=7+Math.floor(rnd()*4);
   for(var r=0;r<ticks;r++){
     for(var i=0;i<N;i++) setFace(i,rnd6(),'roll');
@@ -2443,6 +2444,64 @@ function playTap() {
     gain.connect(ctx.destination);
     osc.start(t);
     osc.stop(t + 0.06);
+  } catch(e) {}
+}
+
+function woodClick(ctx, t, freq, vol, dur) {
+  var sampleRate = ctx.sampleRate;
+  var len = Math.floor(sampleRate * dur);
+  var buf = ctx.createBuffer(1, len, sampleRate);
+  var data = buf.getChannelData(0);
+  for (var j = 0; j < len; j++) {
+    var p = j / len;
+    // Більше хрусткого шуму, менше тону
+    var tone  = Math.sin(2 * Math.PI * freq * j / sampleRate) * Math.pow(1 - p, 10) * 0.5;
+    var crack = (Math.random() * 2 - 1) * Math.pow(1 - p, 25) * 1.2;
+    data[j] = tone + crack;
+  }
+  var src = ctx.createBufferSource();
+  src.buffer = buf;
+  // Середні частоти — дерев'яний характер
+  var bp = ctx.createBiquadFilter();
+  bp.type = 'bandpass';
+  bp.frequency.value = freq * 1.6;
+  bp.Q.value = 0.8;
+  // Хрускіт у верхах
+  var hi = ctx.createBiquadFilter();
+  hi.type = 'highshelf';
+  hi.frequency.value = 600;
+  hi.gain.value = 8;
+  var gain = ctx.createGain();
+  gain.gain.setValueAtTime(vol, t);
+  gain.gain.exponentialRampToValueAtTime(0.001, t + 0.04); // різке затухання — без ехо
+  src.connect(bp);
+  bp.connect(hi);
+  hi.connect(gain);
+  gain.connect(ctx.destination);
+  src.start(t);
+}
+
+function playDiceRoll(count) {
+  try {
+    var ctx = getAudio();
+    var totalDuration = 1.05; // трохи повільніше
+    var bounces = 3 + Math.floor(Math.random() * 2);
+
+    for (var d = 0; d < count; d++) {
+      var diceOffset = d * (0.07 + Math.random() * 0.06);
+      var freq = 130 + Math.random() * 70 + d * 20;
+      var t = ctx.currentTime + diceOffset;
+
+      for (var i = 0; i < bounces; i++) {
+        var isFirst = i === 0;
+        var progress = i / bounces;
+        // Перший удар на початку, відскоки ближче до кінця
+        var timeOffset = isFirst ? 0 : totalDuration * 0.3 + (totalDuration * 0.7) * Math.pow(progress, 0.7);
+        var vol = isFirst ? 0.75 + Math.random() * 0.2 : 0.18 + Math.random() * 0.12 * (1 - progress);
+        var dur = isFirst ? 0.22 : 0.10 + Math.random() * 0.05;
+        woodClick(ctx, t + timeOffset, freq + Math.random() * 25, vol, dur);
+      }
+    }
   } catch(e) {}
 }
 
